@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 2 - Texte et sémantique</title>
+    <style>
+        /* Styles pour l'exemple */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        
+        /* Styles pour l'en-tête */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        /* Styles pour la navigation */
+        nav {
+            background: #2d3436;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: #636e72;
+        }
+        
+        /* Styles pour les sections */
+        section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+        
+        section h2 {
+            color: #2d3436;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Styles pour les articles */
+        article {
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        article h3 {
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+        
+        /* Styles pour les listes */
+        ul, ol {
+            margin: 15px 0 15px 25px;
+        }
+        
+        ul ul, ol ol, ul ol, ol ul {
+            margin: 5px 0 5px 25px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        /* Styles pour les balises inline */
+        code {
+            background: #dfe6e9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .highlight {
+            background: #fdcb6e;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .important {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        /* Styles pour les figures */
+        figure {
+            background: #dfe6e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        figcaption {
+            font-style: italic;
+            color: #636e72;
+            margin-top: 8px;
+            text-align: center;
+        }
+        
+        /* Styles pour le footer */
+        footer {
+            background: #2d3436;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #74b9ff;
+        }
+        
+        /* Styles pour les listes de définitions */
+        dl {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dfe6e9;
+        }
+        
+        dt {
+            font-weight: bold;
+            color: #2d3436;
+            margin-top: 10px;
+        }
+        
+        dt:first-child {
+            margin-top: 0;
+        }
+        
+        dd {
+            margin-left: 20px;
+            color: #636e72;
+            margin-bottom: 5px;
+        }
+        
+        /* Styles pour les citations */
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin: 15px 0;
+            background: #f1f2f6;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        blockquote p {
+            margin-bottom: 0;
+        }
+        
+        /* Styles pour les asides */
+        aside {
+            background: #ffeaa7;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #fdcb6e;
+        }
+        
+        aside h3 {
+            color: #2d3436;
+            margin-bottom: 5px;
+        }
+        
+        /* Styles pour les time */
+        time {
+            color: #636e72;
+            font-size: 0.9em;
+        }
+        
+        /* Styles pour les adresses */
+        address {
+            background: #dfe6e9;
+            padding: 15px;
+            border-radius: 8px;
+            font-style: normal;
+            margin: 15px 0;
+        }
+        
+        address p {
+            margin-bottom: 5px;
+        }
+        
+        address a {
+            color: #0984e3;
+            text-decoration: none;
+        }
+        
+        address a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        ================================================
+        HEADER : En-tête de la page
+        ================================================
+    -->
+    <header>
+        <h1>📚 Jour 2 : Texte et sémantique</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser les balises de texte et les 
+            <em>éléments sémantiques</em> HTML5.
+        </p>
+        <p>
+            <small>Formation 30 jours — HTML / CSS / JavaScript</small>
+        </p>
+    </header>
+    
+    <!-- 
+        ================================================
+        NAV : Navigation principale
+        ================================================
+    -->
+    <nav aria-label="Navigation principale">
+        <ul>
+            <li><a href="#titres">Titres</a></li>
+            <li><a href="#paragraphes">Paragraphes</a></li>
+            <li><a href="#formatage">Formatage</a></li>
+            <li><a href="#listes">Listes</a></li>
+            <li><a href="#semantique">Sémantique</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 
+        ================================================
+        MAIN : Contenu principal
+        ================================================
+    -->
+    <main>
+        <!-- 
+            ============================================
+            SECTION : TITRES
+            ============================================
+        -->
+        <section id="titres">
+            <h2>1. Les titres (h1 à h6)</h2>
+            
+            <article>
+                <h3>1.1 Hiérarchie des titres</h3>
+                
+                <h1>Titre h1 — Principal (un seul par page)</h1>
+                <h2>Titre h2 — Section</h2>
+                <h3>Titre h3 — Sous-section</h3>
+                <h4>Titre h4 — Détail</h4>
+                <h5>Titre h5 — Sous-détail</h5>
+                <h6>Titre h6 — Très petit titre</h6>
+                
+                <p>
+                    <strong>Règle :</strong> 
+                    <mark>Un seul h1 par page</mark> pour le SEO.
+                    Ne pas sauter de niveaux.
+                </p>
+            </article>
+        </section>
+        
+        <!-- 
+            ============================================
+            SECTION : PARAGRAPHES
+            ============================================
+        -->
+        <section id="paragraphes">
+            <h2>2. Les paragraphes (p)</h2>
+            
+            <article>
+                <h3>2.1 Paragraphes simples</h3>
+                <p>
+                    Ceci est un paragraphe standard. Il contient du texte 
+                    qui sera affiché de manière fluide par le navigateur.
+                </p>
+                <p>
+                    Un deuxième paragraphe pour montrer la séparation 
+                    entre les blocs de texte.
+                </p>
+            </article>
+            
+            <article>
+                <h3>2.2 Sauts de ligne (br) et séparateurs (hr)</h3>
+                <p>
+                    Ligne 1<br>
+                    Ligne 2<br>
+                    Ligne 3
+                </p>
+                
+                <hr>
+                
+                <p>
+                    Ceci est un texte séparé par une ligne horizontale.
+                </p>
+            </article>
+        </section>
+        
+        <!-- 
+            ============================================
+            SECTION : FORMATAGE
+            ============================================
+        -->
+        <section id="formatage">
+            <h2>3. Formatage du texte</h2>
+            
+            <article>
+                <h3>3.1 Balises sémantiques</h3>
+                <p>
+                    <strong>Gras sémantique</strong> (strong)<br>
+                    <em>Italique sémantique</em> (em)<br>
+                    <mark>Texte surligné</mark> (mark)<br>
+                    <small>Texte secondaire</small> (small)<br>
+                    <del>Texte supprimé</del> (del)<br>
+                    <ins>Texte inséré</ins> (ins)<br>
+                    H<sub>2</sub>O (sub)<br>
+                    E = mc<sup>2</sup> (sup)
+                </p>
+            </article>
+            
+            <article>
+                <h3>3.2 Balises techniques</h3>
+                <p>
+                    Code : <code>const x = 10;</code><br>
+                    Clavier : <kbd>Ctrl</kbd> + <kbd>S</kbd><br>
+                    Sortie programme : <samp>Error 404</samp><br>
+                    Variable : <var>x</var> = 10
+                </p>
+            </article>
+            
+            <article>
+                <h3>3.3 Citations et abréviations</h3>
+                <p>
+                    <q>Ceci est une courte citation.</q>
+                </p>
+                
+                <blockquote cite="https://example.com">
+                    <p>
+                        Ceci est une longue citation qui mérite d'être mise 
+                        dans un bloc séparé.
+                    </p>
+                    <footer>— Auteur inconnu</footer>
+                </blockquote>
+                
+                <p>
+                    Le <abbr title="HyperText Markup Language">HTML</abbr> 
+                    est un langage de balisage.
+                </p>
+                
+                <p>
+                    Mon livre préféré : <cite>L'Alchimiste</cite>.
+                </p>
+                
+                <p>
+                    Le <dfn>CSS</dfn> est un langage de style.
+                </p>
+            </article>
+        </section>
+        
+        <!-- 
+            ============================================
+            SECTION : LISTES
+            ============================================
+        -->
+        <section id="listes">
+            <h2>4. Les listes</h2>
+            
+            <article>
+                <h3>4.1 Liste non ordonnée (ul)</h3>
+                <ul>
+                    <li>Élément 1</li>
+                    <li>Élément 2</li>
+                    <li>Élément 3</li>
+                </ul>
+            </article>
+            
+            <article>
+                <h3>4.2 Liste ordonnée (ol)</h3>
+                <ol>
+                    <li>Premier</li>
+                    <li>Deuxième</li>
+                    <li>Troisième</li>
+                </ol>
+                
+                <h4>Avec attributs</h4>
+                <ol start="5" type="A">
+                    <li>Cinquième</li>
+                    <li>Sixième</li>
+                    <li>Septième</li>
+                </ol>
+                
+                <ol reversed>
+                    <li>Trois</li>
+                    <li>Deux</li>
+                    <li>Un</li>
+                </ol>
+            </article>
+            
+            <article>
+                <h3>4.3 Liste de définitions (dl)</h3>
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>Langage de balisage pour le web</dd>
+                    
+                    <dt>CSS</dt>
+                    <dd>Langage de style</dd>
+                    
+                    <dt>JavaScript</dt>
+                    <dd>Langage de programmation</dd>
+                </dl>
+            </article>
+            
+            <article>
+                <h3>4.4 Listes imbriquées</h3>
+                <ul>
+                    <li>
+                        Catégorie A
+                        <ul>
+                            <li>Sous-catégorie A1</li>
+                            <li>
+                                Sous-catégorie A2
+                                <ol>
+                                    <li>Élément A2.1</li>
+                                    <li>Élément A2.2</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Catégorie B</li>
+                </ul>
+            </article>
+        </section>
+        
+        <!-- 
+            ============================================
+            SECTION : SÉMANTIQUE HTML5
+            ============================================
+        -->
+        <section id="semantique">
+            <h2>5. Balises sémantiques HTML5</h2>
+            
+            <article>
+                <h3>5.1 Article avec header et footer</h3>
+                <article>
+                    <header>
+                        <h3>Titre de l'article</h3>
+                        <p>
+                            <time datetime="2026-08-29">29 août 2026</time>
+                            — Par <span class="highlight">Jean Dupont</span>
+                        </p>
+                    </header>
+                    
+                    <p>
+                        Ceci est le contenu principal de l'article. 
+                        Il utilise des balises sémantiques pour 
+                        structurer l'information.
+                    </p>
+                    
+                    <figure>
+                        <pre>
+                            <code>
+                                function saluer(nom) {
+                                    return `Bonjour ${nom} !`;
+                                }
+                            </code>
+                        </pre>
+                        <figcaption>Fonction JavaScript de salutation</figcaption>
+                    </figure>
+                    
+                    <footer>
+                        <p>
+                            <small>Catégorie : 
+                                <span class="important">Programmation</span>
+                            </small>
+                        </p>
+                    </footer>
+                </article>
+            </article>
+            
+            <article>
+                <h3>5.2 Aside (contenu annexe)</h3>
+                <aside>
+                    <h3>💡 Astuce du jour</h3>
+                    <p>
+                        Utilisez toujours des balises sémantiques pour 
+                        améliorer l'accessibilité de vos pages.
+                    </p>
+                </aside>
+            </article>
+            
+            <article>
+                <h3>5.3 Address (coordonnées)</h3>
+                <address>
+                    <p>
+                        <strong>Jean Dupont</strong><br>
+                        123 Rue des Lilas<br>
+                        75000 Paris<br>
+                        <a href="mailto:jean@email.com">jean@email.com</a><br>
+                        <a href="tel:+33123456789">01 23 45 67 89</a>
+                    </p>
+                </address>
+            </article>
+        </section>
+        
+        <!-- 
+            ============================================
+            SECTION : CONTACT (avec anchor)
+            ============================================
+        -->
+        <section id="contact">
+            <h2>6. Contact</h2>
+            <address>
+                <p>
+                    <strong>Notre équipe</strong><br>
+                    <a href="mailto:contact@exemple.com">contact@exemple.com</a>
+                </p>
+            </address>
+        </section>
+    </main>
+    
+    <!-- 
+        ================================================
+        FOOTER : Pied de page
+        ================================================
+    -->
+    <footer>
+        <p>
+            <strong>📚 Jour 2 terminé</strong> &middot; 
+            <time datetime="2026-08-29">29 août 2026</time>
+        </p>
+        <p>
+            <small>
+                &copy; 2026 — Formation 30 jours HTML/CSS/JavaScript
+            </small>
+        </p>
+        <nav>
+            <a href="#">Haut de page</a> &middot;
+            <a href="#">Mentions légales</a> &middot;
+            <a href="#">Confidentialité</a>
+        </nav>
+    </footer>
+</body>
+</html>
