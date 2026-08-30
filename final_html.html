@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<!-- 
+    ========================================================
+    JOUR 7 : RÉVISION HTML + EXERCICE COMPLET
+    Page web professionnelle pour "TechPro Solutions"
+    ========================================================
+-->
+
+<html lang="fr">
+<head>
+    <!-- ============================================
+    MÉTADONNÉES
+    ============================================ -->
+    
+    <!-- Encodage universel -->
+    <meta charset="UTF-8">
+    
+    <!-- Responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Description pour le SEO -->
+    <meta name="description" content="TechPro Solutions - Entreprise de services informatiques et développement web. Experts en technologies innovantes.">
+    
+    <!-- Mots-clés (SEO) -->
+    <meta name="keywords" content="informatique, développement web, services IT, techpro, solutions numériques">
+    
+    <!-- Auteur -->
+    <meta name="author" content="TechPro Solutions">
+    
+    <!-- Robots : indexation autorisée -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (partage social) -->
+    <meta property="og:title" content="TechPro Solutions - Services informatiques">
+    <meta property="og:description" content="Experts en technologies innovantes pour votre entreprise.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techpro-solutions.example.com">
+    <meta property="og:image" content="https://techpro-solutions.example.com/og-image.jpg">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TechPro Solutions">
+    <meta name="twitter:description" content="Experts en technologies innovantes">
+    
+    <!-- Titre de la page -->
+    <title>TechPro Solutions - Services informatiques et développement web</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230f3460'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    
+    <!-- ============================================
+    STYLES CSS (INTERNES POUR L'EXERCICE)
+    ============================================ -->
+    <style>
+        /* ==========================================
+           RESET ET STYLES DE BASE
+           ========================================== */
+        
+        /* Reset universel : supprime les marges et paddings par défaut */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Scroll fluide pour les ancres */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Corps de la page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #1a1a2e;
+            background-color: #f0f2f5;
+        }
+        
+        /* ==========================================
+           CONTENEUR PRINCIPAL
+           ========================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ==========================================
+           HEADER
+           ========================================== */
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        header .logo h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        header .logo .logo-icon {
+            font-size: 2.5em;
+        }
+        
+        header .logo small {
+            display: block;
+            font-size: 0.5em;
+            opacity: 0.7;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        /* ==========================================
+           NAVIGATION
+           ========================================== */
+        nav {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: #a8d8ea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        nav a[aria-current="page"] {
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+        
+        /* ==========================================
+           MAIN
+           ========================================== */
+        main {
+            padding: 40px 0;
+        }
+        
+        /* ==========================================
+           SECTIONS
+           ========================================== */
+        section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+        
+        section h2 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        section h2 .section-icon {
+            font-size: 1.2em;
+        }
+        
+        section h3 {
+            color: #16213e;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+        
+        section h4 {
+            color: #0f3460;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        /* ==========================================
+           HERO SECTION
+           ========================================== */
+        #hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border: none;
+        }
+        
+        #hero h2 {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.3);
+            justify-content: center;
+            font-size: 2.5em;
+        }
+        
+        #hero p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: #e94560;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        .btn:hover {
+            background: #c73652;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #0f3460;
+            box-shadow: 0 8px 25px rgba(255,255,255,0.2);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* ==========================================
+           ARTICLES ET SERVICES
+           ========================================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .service-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #0f3460;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-card .service-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .service-card h4 {
+            margin-top: 0;
+        }
+        
+        /* ==========================================
+           TABLEAU
+           ========================================== */
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid #dee2e6;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+        
+        table caption {
+            padding: 15px;
+            font-weight: 600;
+            font-size: 1.1em;
+            caption-side: top;
+            background: #f8f9fa;
+        }
+        
+        thead th {
+            background: #1a1a2e;
+            color: white;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+        
+        tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tbody tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        tfoot {
+            background: #ecf0f1;
+            font-weight: 600;
+        }
+        
+        tfoot td {
+            padding: 12px 18px;
+            border-top: 2px solid #1a1a2e;
+        }
+        
+        /* ==========================================
+           ASIDE (témoignages)
+           ========================================== */
+        aside {
+            background: #e8f5e9;
+            padding: 20px 25px;
+            border-radius: 12px;
+            border-left: 4px solid #2ecc71;
+            margin: 15px 0;
+        }
+        
+        aside h3 {
+            margin-top: 0;
+            color: #1a1a2e;
+        }
+        
+        aside blockquote {
+            font-style: italic;
+            margin: 10px 0;
+            padding-left: 15px;
+            border-left: 3px solid #2ecc71;
+        }
+        
+        aside blockquote footer {
+            font-style: normal;
+            font-weight: 600;
+            background: transparent;
+            padding: 0;
+            color: #1a1a2e;
+        }
+        
+        /* ==========================================
+           FORMULAIRE
+           ========================================== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1a1a2e;
+        }
+        
+        .form-group .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0f3460;
+            box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
+        }
+        
+        .form-group input:invalid,
+        .form-group select:invalid {
+            border-color: #e74c3c;
+        }
+        
+        .form-group input:valid,
+        .form-group select:valid {
+            border-color: #2ecc71;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        fieldset {
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin: 20px 0;
+        }
+        
+        legend {
+            font-weight: 600;
+            padding: 0 10px;
+            font-size: 1.1em;
+            color: #1a1a2e;
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-group label,
+        .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        .checkbox-group input,
+        .radio-group input {
+            width: auto;
+        }
+        
+        /* ==========================================
+           MULTIMÉDIA
+           ========================================== */
+        .media-container {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        
+        .media-container video,
+        .media-container audio {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+        
+        .media-container video {
+            max-height: 400px;
+            object-fit: cover;
+        }
+        
+        figure {
+            margin: 15px 0;
+        }
+        
+        figure figcaption {
+            font-style: italic;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        footer {
+            background: #1a1a2e;
+            color: #a8d8ea;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+        
+        footer .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+        
+        footer h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        footer a {
+            color: #a8d8ea;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        footer .copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        
+        footer address {
+            font-style: normal;
+            line-height: 1.8;
+        }
+        
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 992px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav {
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            footer .container {
+                grid-template-columns: 1fr 1fr;
+                text-align: center;
+            }
+            
+            footer address {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 25px 20px;
+            }
+            
+            #hero {
+                padding: 40px 20px;
+            }
+            
+            #hero h2 {
+                font-size: 1.8em;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            footer .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ==========================================
+           CLASSES UTILITAIRES POUR STYLES INLINE
+           ========================================== */
+        .back-to-top {
+            color: white;
+        }
+        
+        .text-muted {
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+        
+        .text-muted-small {
+            margin-top: 5px;
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+        
+        .text-small-muted {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .mt-20 {
+            margin-top: 20px;
+        }
+        
+        .mt-15 {
+            margin-top: 15px;
+        }
+        
+        .mt-5 {
+            margin-top: 5px;
+        }
+        
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        
+        .m-20 {
+            margin: 20px 0;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        .media-dark-bg {
+            background: #0f3460;
+        }
+        
+        .figure-margin {
+            margin-top: 30px;
+        }
+        
+        .opacity-80 {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .form-group-margin {
+            margin: 20px 0;
+        }
+        
+        .opacity-70 {
+            opacity: 0.6;
+        }
+        
+        .display-inline-block {
+            display: inline-block;
+        }
+        
+        .btn-reset {
+            background: #bdc3c7;
+            color: #1a1a2e;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ================================================
+    HEADER : En-tête de la page
+    ================================================ -->
+    <header role="banner" aria-label="En-tête du site">
+        <div class="container">
+            <!-- Logo avec attributs data-* pour identification -->
+            <div class="logo" data-company="techpro" data-version="1.0">
+                <span class="logo-icon" role="img" aria-label="Logo TechPro">💻</span>
+                <div>
+                    <h1>TechPro <small>Solutions</small></h1>
+                </div>
+            </div>
+            
+            <!-- Navigation principale -->
+            <nav role="navigation" aria-label="Navigation principale">
+                <a href="#hero" aria-current="page">Accueil</a>
+                <a href="#services">Services</a>
+                <a href="#equipe">Équipe</a>
+                <a href="#temoignages">Témoignages</a>
+                <a href="#contact">Contact</a>
+                <a href="#media">Multimédia</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- ================================================
+    MAIN : Contenu principal
+    ================================================ -->
+    <main role="main" id="main-content">
+        <div class="container">
+            
+            <!-- ============================================
+            SECTION : HERO (Accueil)
+            ============================================ -->
+            <section id="hero" aria-labelledby="hero-title">
+                <h2 id="hero-title">
+                    <span class="section-icon">🚀</span> 
+                    Bienvenue chez TechPro Solutions
+                </h2>
+                <p>
+                    Nous accompagnons les entreprises dans leur 
+                    <strong>transformation numérique</strong> avec des 
+                    <em>solutions innovantes</em> et sur mesure.
+                </p>
+                <p>
+                    <mark>Expertise reconnue</mark> en développement web, 
+                    cybersécurité et intelligence artificielle.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn">Découvrir nos services</a>
+                    <a href="#contact" class="btn btn-secondary">Nous contacter</a>
+                </div>
+                
+                <!-- Lien vers les ancres de navigation -->
+                <p class="mt-20 text-muted opacity-70">
+                    <a href="#main-content" class="back-to-top">↑ Haut de page</a>
+                </p>
+            </section>
+            
+            <!-- ============================================
+            SECTION : SERVICES
+            ============================================ -->
+            <section id="services" aria-labelledby="services-title">
+                <h2 id="services-title">
+                    <span class="section-icon">⚡</span> 
+                    Nos services
+                </h2>
+                
+                <p class="mb-20">
+                    Découvrez nos <strong>solutions technologiques</strong> 
+                    conçues pour répondre aux besoins de votre entreprise.
+                </p>
+                
+                <!-- Grille de services avec articles -->
+                <div class="services-grid">
+                    <article class="service-card" 
+                             data-service="web" 
+                             data-category="development">
+                        <span class="service-icon" role="img" aria-hidden="true">🌐</span>
+                        <h4>Développement Web</h4>
+                        <p>
+                            Création de sites web <strong>responsives</strong> 
+                            et d'applications <em>performantes</em> avec les 
+                            dernières technologies.
+                        </p>
+                        <ul>
+                            <li>HTML5 / CSS3 / JavaScript</li>
+                            <li>React, Vue, Angular</li>
+                            <li>Optimisation SEO</li>
+                        </ul>
+                    </article>
+                    
+                    <article class="service-card" 
+                             data-service="security" 
+                             data-category="cybersecurity">
+                        <span class="service-icon" role="img" aria-hidden="true">🔒</span>
+                        <h4>Cybersécurité</h4>
+                        <p>
+                            Protection de vos données et <strong>infrastructures</strong> 
+                            contre les <em>menaces informatiques</em>.
+                        </p>
+                        <ul>
+                            <li>Audit de sécurité</li>
+                            <li>Gestion des accès</li>
+                            <li>Formation des équipes</li>
+                        </ul>
+                    </article>
+                    
+                    <article class="service-card" 
+                             data-service="ai" 
+                             data-category="innovation">
+                        <span class="service-icon" role="img" aria-hidden="true">🤖</span>
+                        <h4>Intelligence Artificielle</h4>
+                        <p>
+                            Intégration de <strong>solutions IA</strong> pour 
+                            <em>automatiser</em> et optimiser vos processus métier.
+                        </p>
+                        <ul>
+                            <li>Machine Learning</li>
+                            <li>Traitement du langage</li>
+                            <li>Analytics prédictive</li>
+                        </ul>
+                    </article>
+                </div>
+                
+                <!-- Lien vers les détails (exemple de lien interne) -->
+                <p class="mt-15">
+                    <a href="#contact" title="Demandez un devis">➡️ Demandez un devis personnalisé</a>
+                </p>
+            </section>
+            
+            <!-- ============================================
+            SECTION : ÉQUIPE (avec tableau)
+            ============================================ -->
+            <section id="equipe" aria-labelledby="equipe-title">
+                <h2 id="equipe-title">
+                    <span class="section-icon">👥</span> 
+                    Notre équipe
+                </h2>
+                
+                <p>
+                    Des <strong>experts passionnés</strong> à votre service.
+                </p>
+                
+                <!-- Tableau des membres de l'équipe -->
+                <div class="table-container">
+                    <table aria-describedby="equipe-desc">
+                        <!-- Titre du tableau (caption) -->
+                        <caption id="equipe-desc">Liste des membres de l'équipe TechPro</caption>
+                        
+                        <!-- En-tête du tableau -->
+                        <thead>
+                            <tr>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Prénom</th>
+                                <th scope="col">Poste</th>
+                                <th scope="col">Compétences</th>
+                                <th scope="col">Années d'expérience</th>
+                            </tr>
+                        </thead>
+                        
+                        <!-- Corps du tableau -->
+                        <tbody>
+                            <tr>
+                                <th scope="row">Martin</th>
+                                <td>Jean</td>
+                                <td>CTO</td>
+                                <td>Architecture, Cloud, DevOps</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Dubois</th>
+                                <td>Marie</td>
+                                <td>Lead Developer</td>
+                                <td>React, Node.js, Python</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Durand</th>
+                                <td>Pierre</td>
+                                <td>Expert Cybersécurité</td>
+                                <td>Pentesting, ISO 27001</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Leroy</th>
+                                <td>Sophie</td>
+                                <td>Data Scientist</td>
+                                <td>Machine Learning, Analytics</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Petit</th>
+                                <td>Thomas</td>
+                                <td>UX/UI Designer</td>
+                                <td>Design, Accessibilité</td>
+                                <td>5</td>
+                            </tr>
+                        </tbody>
+                        
+                        <!-- Pied du tableau avec totaux -->
+                        <tfoot>
+                            <tr>
+                                <td class="text-right" colspan="4">
+                                    <strong>Expérience moyenne</strong>
+                                </td>
+                                <td><strong>8.8 ans</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                
+                <p class="text-small-muted">
+                    <small>📊 Données mises à jour en août 2026</small>
+                </p>
+                
+                <!-- Lien email avec attributs -->
+                <p class="mt-15">
+                    📧 Contactez notre équipe : 
+                    <a href="mailto:equipe@techpro-solutions.example.com?subject=Demande%20d%27information" 
+                       aria-label="Envoyer un email à l'équipe">
+                        equipe@techpro-solutions.example.com
+                    </a>
+                </p>
+            </section>
+            
+            <!-- ============================================
+            SECTION : TÉMOIGNAGES (avec aside)
+            ============================================ -->
+            <section id="temoignages" aria-labelledby="temoignages-title">
+                <h2 id="temoignages-title">
+                    <span class="section-icon">💬</span> 
+                    Témoignages
+                </h2>
+                
+                <p>
+                    Ce que nos <strong>clients</strong> pensent de nos services.
+                </p>
+                
+                <!-- Témoignage principal -->
+                <article class="m-20">
+                    <aside aria-label="Témoignage client 1">
+                        <h3>Client satisfait</h3>
+                        <blockquote>
+                            <p>
+                                "TechPro Solutions a <strong>transformé</strong> 
+                                notre infrastructure informatique. Leur expertise 
+                                et leur <em>professionnalisme</em> nous ont permis 
+                                de gagner en efficacité."
+                            </p>
+                            <footer>
+                                — <cite>Marie Lambert, CEO de SmartCorp</cite>
+                            </footer>
+                        </blockquote>
+                    </aside>
+                    
+                    <aside aria-label="Témoignage client 2">
+                        <h3>Partenariat durable</h3>
+                        <blockquote>
+                            <p>
+                                "Nous travaillons avec TechPro depuis 3 ans. 
+                                Leur <strong>réactivité</strong> et leur 
+                                <em>innovation</em> font d'eux un partenaire 
+                                de confiance."
+                            </p>
+                            <footer>
+                                — <cite>Philippe Moreau, Directeur Technique de DataFlow</cite>
+                            </footer>
+                        </blockquote>
+                    </aside>
+                </article>
+                
+                <!-- Temps de publication -->
+                <p>
+                    <time datetime="2026-08-29">Témoignages recueillis le 29 août 2026</time>
+                </p>
+            </section>
+            
+            <!-- ============================================
+            SECTION : CONTACT (formulaire complet)
+            ============================================ -->
+            <section id="contact" aria-labelledby="contact-title">
+                <h2 id="contact-title">
+                    <span class="section-icon">📝</span> 
+                    Contactez-nous
+                </h2>
+                
+                <p>
+                    Une question ? Un projet ? <strong>N'hésitez pas</strong> à 
+                    nous contacter, nous vous répondrons dans les <em>24h</em>.
+                </p>
+                
+                <!-- Formulaire complet avec validation native -->
+                <form action="#" method="post" 
+                      id="contact-form" 
+                      name="contact"
+                      novalidate
+                      aria-label="Formulaire de contact">
+                    
+                    <!-- Informations personnelles (fieldset) -->
+                    <fieldset>
+                        <legend>Informations personnelles</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-nom">
+                                    Nom <span class="required" aria-hidden="true">*</span>
+                                </label>
+                                <input type="text" 
+                                       id="contact-nom" 
+                                       name="nom" 
+                                       required 
+                                       minlength="2" 
+                                       maxlength="50"
+                                       placeholder="Votre nom"
+                                       autocomplete="family-name"
+                                       aria-required="true">
+                                <span class="help-text text-muted">
+                                    Entre 2 et 50 caractères
+                                </span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-prenom">Prénom</label>
+                                <input type="text" 
+                                       id="contact-prenom" 
+                                       name="prenom" 
+                                       minlength="2" 
+                                       maxlength="50"
+                                       placeholder="Votre prénom"
+                                       autocomplete="given-name">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-email">
+                                    Email <span class="required" aria-hidden="true">*</span>
+                                </label>
+                                <input type="email" 
+                                       id="contact-email" 
+                                       name="email" 
+                                       required 
+                                       placeholder="email@domaine.com"
+                                       autocomplete="email"
+                                       aria-required="true">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact-tel">Téléphone</label>
+                                <input type="tel" 
+                                       id="contact-tel" 
+                                       name="telephone" 
+                                       pattern="[0-9]{10}"
+                                       placeholder="0123456789"
+                                       autocomplete="tel">
+                                <span class="help-text text-muted">
+                                    10 chiffres, sans espaces
+                                </span>
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Détails de la demande -->
+                    <fieldset>
+                        <legend>Détails de votre demande</legend>
+                        
+                        <div class="form-group">
+                            <label for="contact-sujet">
+                                Sujet <span class="required" aria-hidden="true">*</span>
+                            </label>
+                            <select id="contact-sujet" name="sujet" required aria-required="true">
+                                <option value="">-- Choisissez un sujet --</option>
+                                <optgroup label="Services">
+                                    <option value="web">Développement web</option>
+                                    <option value="security">Cybersécurité</option>
+                                    <option value="ai">Intelligence Artificielle</option>
+                                </optgroup>
+                                <optgroup label="Autres">
+                                    <option value="devis">Demande de devis</option>
+                                    <option value="info">Demande d'information</option>
+                                    <option value="autre">Autre</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-message">
+                                Message <span class="required" aria-hidden="true">*</span>
+                            </label>
+                            <textarea id="contact-message" 
+                                      name="message" 
+                                      required 
+                                      minlength="10" 
+                                      maxlength="1000"
+                                      rows="5"
+                                      placeholder="Décrivez votre projet ou votre demande..."
+                                      aria-required="true"></textarea>
+                            <span class="help-text text-muted">
+                                Entre 10 et 1000 caractères
+                            </span>
+                            <span class="help-text text-muted" id="char-count">
+                                0 / 1000 caractères
+                            </span>
+                        </div>
+                        
+                        <!-- Script pour le compteur de caractères -->
+                        <script>
+                            (function() {
+                                const textarea = document.getElementById('contact-message');
+                                const charCount = document.getElementById('char-count');
+                                if (textarea && charCount) {
+                                    textarea.addEventListener('input', function() {
+                                        const count = this.value.length;
+                                        charCount.textContent = count + ' / 1000 caractères';
+                                    });
+                                }
+                            })();
+                        </script>
+                        
+                        <div class="form-group">
+                            <label>Préférence de contact</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="contact-pref" value="email" checked>
+                                    Email
+                                </label>
+                                <label>
+                                    <input type="radio" name="contact-pref" value="tel">
+                                    Téléphone
+                                </label>
+                                <label>
+                                    <input type="radio" name="contact-pref" value="both">
+                                    Les deux
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Services qui vous intéressent</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="services[]" value="web">
+                                    Développement web
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="services[]" value="security">
+                                    Cybersécurité
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="services[]" value="ai">
+                                    Intelligence Artificielle
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="services[]" value="consulting">
+                                    Conseil
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Conditions -->
+                    <div class="form-group form-group-margin">
+                        <label>
+                            <input type="checkbox" name="accept" required aria-required="true">
+                            J'accepte les 
+                            <a href="#" aria-label="Conditions générales d'utilisation">conditions générales</a> 
+                            <span class="required" aria-hidden="true">*</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Boutons -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn" 
+                                formnovalidate
+                                aria-label="Envoyer le formulaire">
+                            📨 Envoyer
+                        </button>
+                        <button type="reset" class="btn btn-secondary btn-reset" 
+                                aria-label="Effacer tous les champs">
+                            🗑️ Effacer
+                        </button>
+                    </div>
+                    
+                    <!-- Champ caché pour l'identifiant -->
+                    <input type="hidden" name="form-id" value="contact-2026-08">
+                </form>
+            </section>
+            
+            <!-- ============================================
+            SECTION : MULTIMÉDIA
+            ============================================ -->
+            <section id="media" aria-labelledby="media-title">
+                <h2 id="media-title">
+                    <span class="section-icon">🎬</span> 
+                    Présentation multimédia
+                </h2>
+                
+                <p>
+                    Découvrez notre <strong>vidéo de présentation</strong> 
+                    et écoutez notre <em>podcast</em> sur les technologies 
+                    innovantes.
+                </p>
+                
+                <!-- Vidéo avec poster -->
+                <figure>
+                    <figcaption>🎥 Vidéo de présentation de TechPro Solutions</figcaption>
+                    <div class="media-container">
+                        <video controls 
+                               preload="metadata" 
+                               poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Crect width='800' height='400' fill='%231a1a2e'/%3E%3Ctext x='400' y='200' font-family='Segoe UI' font-size='30' fill='white' text-anchor='middle'%3ETechPro Solutions%3C/text%3E%3Ctext x='400' y='240' font-family='Segoe UI' font-size='18' fill='%23a8d8ea' text-anchor='middle'%3EVid%C3%A9o de pr%C3%A9sentation%3C/text%3E%3C/svg%3E"
+                               aria-label="Vidéo de présentation de TechPro Solutions">
+                            <!-- Sources multiples pour compatibilité -->
+                            <source src="#" type="video/mp4" 
+                                    media="(max-width: 480px)">
+                            <source src="#" type="video/mp4" 
+                                    media="(min-width: 481px)">
+                            <source src="#" type="video/webm">
+                            <source src="#" type="video/ogg">
+                            
+                            <!-- Pistes de sous-titres -->
+                            <track kind="subtitles" src="#" srclang="fr" label="Français" default>
+                            <track kind="subtitles" src="#" srclang="en" label="English">
+                            
+                            <p>Votre navigateur ne supporte pas l'élément vidéo.</p>
+                        </video>
+                    </div>
+                    <p class="text-muted-small">
+                        ⚠️ Remplacez le <code>src="#"</code> par une vraie URL vidéo.
+                    </p>
+                </figure>
+                
+                <!-- Audio (podcast) -->
+                <figure class="figure-margin">
+                    <figcaption>🎙️ Podcast : Les technologies de demain</figcaption>
+                    <div class="media-container media-dark-bg">
+                        <audio controls preload="metadata" 
+                               aria-label="Podcast sur les technologies de demain">
+                            <source src="#" type="audio/mpeg">
+                            <source src="#" type="audio/ogg">
+                            <source src="#" type="audio/wav">
+                            <p>Votre navigateur ne supporte pas l'élément audio.</p>
+                        </audio>
+                    </div>
+                    <p class="text-muted-small">
+                        ⚠️ Remplacez le <code>src="#"</code> par une vraie URL audio.
+                    </p>
+                </figure>
+            </section>
+        </div>
+    </main>
+    
+    <!-- ================================================
+    FOOTER : Pied de page
+    ================================================ -->
+    <footer role="contentinfo" aria-label="Pied de page">
+        <div class="container">
+            <!-- Colonne 1 : Informations -->
+            <div>
+                <h3>TechPro Solutions</h3>
+                <p class="opacity-80">
+                    Experts en technologies innovantes depuis 2020.
+                    Nous accompagnons les entreprises dans leur 
+                    transformation numérique.
+                </p>
+                <address>
+                    <p>📍 123 Avenue de la Technologie</p>
+                    <p>75000 Paris, France</p>
+                    <p>📞 <a href="tel:+33123456789">01 23 45 67 89</a></p>
+                    <p>📧 <a href="mailto:contact@techpro-solutions.example.com">contact@techpro-solutions.example.com</a></p>
+                </address>
+            </div>
+            
+            <!-- Colonne 2 : Liens rapides -->
+            <div>
+                <h3>Liens rapides</h3>
+                <a href="#hero">Accueil</a>
+                <a href="#services">Services</a>
+                <a href="#equipe">Équipe</a>
+                <a href="#contact">Contact</a>
+                <a href="#media">Multimédia</a>
+            </div>
+            
+            <!-- Colonne 3 : Liens légaux -->
+            <div>
+                <h3>Informations légales</h3>
+                <a href="#" rel="license">Mentions légales</a>
+                <a href="#" rel="privacy">Confidentialité</a>
+                <a href="#" rel="terms">CGV</a>
+                <a href="#" rel="cookies">Cookies</a>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>
+                    &copy; <time datetime="2026">2026</time> 
+                    TechPro Solutions. 
+                    Tous droits réservés.
+                </p>
+                <p class="mt-5 text-muted">
+                    Site réalisé avec ❤️ en 
+                    <abbr title="HyperText Markup Language">HTML5</abbr>, 
+                    <abbr title="Cascading Style Sheets">CSS3</abbr> et 
+                    <abbr title="JavaScript">JS</abbr>
+                </p>
+                <p class="mt-5 text-muted">
+                    <a href="#main-content" class="display-inline-block">↑ Retour en haut</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
