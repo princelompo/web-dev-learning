@@ -1,0 +1,82 @@
+<!-- 
+  ==========================================
+  JOUR 6 : Multimédia (audio, vidéo, iframe) + attributs avancés
+  ==========================================
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 6 - Multimédia</title>
+  </head>
+  <body>
+
+    <header>
+      <h1>Galerie multimédia</h1>
+    </header>
+
+    <main>
+
+      <!-- Section audio -->
+      <section id="audio-section" class="section-media">
+        <h2>Écouter un extrait</h2>
+
+        <!-- Lecteur audio avec plusieurs formats de secours et préchargement léger -->
+        <audio controls preload="metadata">
+          <source src="musique.mp3" type="audio/mpeg">
+          <source src="musique.ogg" type="audio/ogg">
+          Votre navigateur ne prend pas en charge la lecture audio.
+        </audio>
+      </section>
+
+      <!-- Section vidéo -->
+      <section id="video-section" class="section-media" data-type="demo">
+        <h2>Regarder la présentation</h2>
+
+        <!-- Lecteur vidéo avec image d'aperçu, sous-titres et dimensions fixées -->
+        <video controls width="640" height="360" poster="apercu.jpg">
+          <source src="presentation.mp4" type="video/mp4">
+          <source src="presentation.webm" type="video/webm">
+          <track src="sous-titres-fr.vtt" kind="subtitles" srclang="fr" label="Français" default>
+          Votre navigateur ne prend pas en charge la lecture vidéo.
+        </video>
+      </section>
+
+      <!-- Section iframe -->
+      <section id="carte-section" class="section-media">
+        <h2>Nous trouver</h2>
+
+        <!-- Contenu externe intégré, chargement différé et sécurisé -->
+        <iframe 
+          src="https://www.exemple-carte.com/plan" 
+          width="600" 
+          height="400" 
+          title="Carte de localisation de nos bureaux"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin">
+        </iframe>
+      </section>
+
+      <!-- Petit exemple d'attributs avancés (id, class, data-*, tabindex, hidden) -->
+      <section id="notes-section" class="section-media">
+        <h2>Notes internes</h2>
+
+        <p class="texte-important" data-auteur="admin" tabindex="0">
+          Ce paragraphe est important et peut recevoir le focus au clavier.
+        </p>
+
+        <!-- Contenu volontairement masqué, sans CSS -->
+        <p hidden data-visibilite="interne">
+          Cette note est cachée et ne s'affiche pas dans le navigateur.
+        </p>
+      </section>
+
+    </main>
+
+    <footer>
+      <p><small>© 2026 Galerie multimédia</small></p>
+    </footer>
+
+  </body>
+</html>

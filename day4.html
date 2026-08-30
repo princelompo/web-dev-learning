@@ -1,0 +1,266 @@
+<!-- ============================================================ -->
+<!-- JOUR 4 — TABLEAUX HTML                                       -->
+<!-- Ce fichier résume tous les concepts des tableaux HTML5.      -->
+<!-- Chaque balise et attribut est expliqué en commentaire.       -->
+<!-- AUCUN CSS, AUCUN JAVASCRIPT — HTML pur uniquement.           -->
+<!-- ============================================================ -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jour 4 de la formation HTML - Les tableaux">
+    <title>Jour 4 — Tableaux HTML | Formation 30 Jours</title>
+    <link rel="icon" href="https://fav.farm/📊">
+</head>
+<body>
+
+    <header>
+        <h1>Jour 4 : Les Tableaux HTML</h1>
+        <p>Structuration de données tabulaires avec sémantique et accessibilité.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#tableau-simple">Tableau simple</a></li>
+            <li><a href="#tableau-structure">Tableau structuré</a></li>
+            <li><a href="#tableau-fusion">Fusion de cellules</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- ===================================================== -->
+        <!-- EXEMPLE 1 : TABLEAU SIMPLE (sans thead/tbody/tfoot)    -->
+        <!-- ===================================================== -->
+        <!-- C'est la forme minimale d'un tableau. On verra plus   -->
+        <!-- bas la forme complète et recommandée.                  -->
+        <section id="tableau-simple">
+            <h2>1. Tableau simple</h2>
+
+            <table>
+                <!-- <caption> : légende du tableau. Doit être la    -->
+                <!-- première balise à l'intérieur de <table>.         -->
+                <caption>Liste des participants</caption>
+
+                <!-- Une ligne d'en-tête. Les <th> décrivent les     -->
+                <!-- colonnes.                                          -->
+                <tr>
+                    <!-- scope="col" indique que cet en-tête s'applique-->
+                    <!-- à toute la colonne située en dessous.           -->
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                </tr>
+
+                <!-- Lignes de données. Chaque <tr> = une ligne.     -->
+                <!-- Chaque <td> = une cellule de données.              -->
+                <tr>
+                    <td>Dupont</td>
+                    <td>Marie</td>
+                    <td>marie.dupont@example.com</td>
+                </tr>
+                <tr>
+                    <td>Martin</td>
+                    <td>Jean</td>
+                    <td>jean.martin@example.com</td>
+                </tr>
+            </table>
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- EXEMPLE 2 : TABLEAU COMPLÈTEMENT STRUCTURÉ             -->
+        <!-- ===================================================== -->
+        <!-- C'est la forme RECOMMANDÉE pour tous les tableaux.    -->
+        <!-- Elle sépare sémantiquement l'en-tête, le corps et le   -->
+        <!-- pied du tableau.                                       -->
+        <section id="tableau-structure">
+            <h2>2. Tableau structuré avec &lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;</h2>
+
+            <table>
+                <caption>Planning de la formation — Récapitulatif</caption>
+
+                <!-- <thead> : regroupe les lignes d'en-tête.        -->
+                <!-- Cela permet aux lecteurs d'écran et aux           -->
+                <!-- navigateurs de reconnaître la structure.          -->
+                <thead>
+                    <tr>
+                        <th scope="col">Partie</th>
+                        <th scope="col">Jour</th>
+                        <th scope="col">Thème</th>
+                        <th scope="col">Statut</th>
+                    </tr>
+                </thead>
+
+                <!-- <tbody> : regroupe les données principales.     -->
+                <!-- On peut avoir plusieurs <tbody> pour séparer des   -->
+                <!-- groupes de données (ici un seul suffit).          -->
+                <tbody>
+                    <tr>
+                        <!-- scope="row" indique que cet en-tête       -->
+                        <!-- s'applique à toute la ligne située à droite.-->
+                        <th scope="row">HTML</th>
+                        <td>Jour 1</td>
+                        <td>Structure du document</td>
+                        <td>Terminé</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">HTML</th>
+                        <td>Jour 2</td>
+                        <td>Texte et sémantique</td>
+                        <td>Terminé</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">HTML</th>
+                        <td>Jour 3</td>
+                        <td>Liens et images</td>
+                        <td>Terminé</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CSS</th>
+                        <td>Jour 8</td>
+                        <td>Syntaxe et sélecteurs</td>
+                        <td>À venir</td>
+                    </tr>
+                </tbody>
+
+                <!-- <tfoot> : regroupe les lignes de résumé.        -->
+                <!-- En HTML5, <tfoot> peut être placé avant ou après  -->
+                <!-- <tbody> dans le code, mais s'affiche toujours en  -->
+                <!-- bas visuellement.                                  -->
+                <tfoot>
+                    <tr>
+                        <!-- Ici, "Total" est un en-tête de ligne      -->
+                        <!-- car il décrit ce que contient la ligne.      -->
+                        <th scope="row">Total</th>
+                        <!-- colspan="3" fusionne 3 cellules en une    -->
+                        <!-- seule qui s'étend sur 3 colonnes.             -->
+                        <td colspan="3">4 jours présentés sur 30</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- EXEMPLE 3 : FUSION DE CELLULES (colspan et rowspan)    -->
+        <!-- ===================================================== -->
+        <!-- Cet exemple montre un planning horaire complexe       -->
+        <!-- utilisant à la fois colspan et rowspan.                -->
+        <section id="tableau-fusion">
+            <h2>3. Fusion de cellules avec colspan et rowspan</h2>
+
+            <table>
+                <caption>Planning hebdomadaire de la formation</caption>
+
+                <thead>
+                    <tr>
+                        <!-- L'en-tête "Créneau" s'étend sur 2 lignes  -->
+                        <!-- grâce à rowspan="2".                         -->
+                        <th scope="col" rowspan="2">Créneau</th>
+                        <!-- Cet en-tête s'étend sur 3 colonnes (Lun,   -->
+                        <!-- Mar, Mer) grâce à colspan="3".               -->
+                        <th scope="col" colspan="3">Semaine 1 — HTML</th>
+                        <!-- Cet en-tête s'étend aussi sur 3 colonnes.   -->
+                        <th scope="col" colspan="3">Semaine 2 — CSS</th>
+                    </tr>
+                    <!-- Deuxième ligne d'en-tête : les jours précis.  -->
+                    <!-- Remarque : il n'y a que 6 <th> car la première   -->
+                    <!-- colonne est déjà occupée par le rowspan ci-dessus.-->
+                    <tr>
+                        <th scope="col">Lun</th>
+                        <th scope="col">Mar</th>
+                        <th scope="col">Mer</th>
+                        <th scope="col">Lun</th>
+                        <th scope="col">Mar</th>
+                        <th scope="col">Mer</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <!-- "Matin" occupe 2 lignes (Matin et Après-midi) -->
+                        <th scope="row" rowspan="2">Matin</th>
+                        <td>Structure</td>
+                        <td>Texte</td>
+                        <td>Liens</td>
+                        <td>Syntaxe</td>
+                        <td>Box Model</td>
+                        <td>Couleurs</td>
+                    </tr>
+                    <tr>
+                        <!-- Pas de <th> ici car "Matin" est déjà là    -->
+                        <!-- grâce au rowspan de la ligne précédente.      -->
+                        <td>Exercice</td>
+                        <td>Exercice</td>
+                        <td>Exercice</td>
+                        <td>Exercice</td>
+                        <td>Exercice</td>
+                        <td>Exercice</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Après-midi</th>
+                        <td colspan="3">Révision HTML</td>
+                        <td colspan="3">Révision CSS</td>
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <th scope="row">Total</th>
+                        <!-- colspan="6" fusionne toutes les colonnes  -->
+                        <!-- de données en une seule cellule.              -->
+                        <td colspan="6">6 demi-journées par semaine</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+
+        <!-- ===================================================== -->
+        <!-- EXEMPLE 4 : ACCESSIBILITÉ AVANCÉE (id + headers)       -->
+        <!-- ===================================================== -->
+        <!-- Pour les tableaux très complexes, on peut lier         -->
+        <!-- explicitement chaque cellule à ses en-têtes.            -->
+        <section>
+            <h2>4. Accessibilité avancée avec id et headers</h2>
+
+            <table>
+                <caption>Bilan des compétences par module</caption>
+                <thead>
+                    <tr>
+                        <!-- Chaque en-tête reçoit un id unique. -->
+                        <th id="module">Module</th>
+                        <th id="theorie">Théorie</th>
+                        <th id="pratique">Pratique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th id="html" scope="row">HTML</th>
+                        <!-- headers="html theorie" lie cette cellule  -->
+                        <!-- aux en-têtes "html" (ligne) et "theorie"   -->
+                        <!-- (colonne). C'est utile quand scope ne       -->
+                        <!-- suffit pas à décrire la relation.            -->
+                        <td headers="html theorie">Maîtrisée</td>
+                        <td headers="html pratique">En cours</td>
+                    </tr>
+                    <tr>
+                        <th id="css" scope="row">CSS</th>
+                        <td headers="css theorie">À venir</td>
+                        <td headers="css pratique">À venir</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>2026 — Formation HTML · CSS · JavaScript en 30 jours</p>
+    </footer>
+
+</body>
+</html>

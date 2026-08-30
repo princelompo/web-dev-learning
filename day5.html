@@ -1,0 +1,134 @@
+<!-- 
+  ==========================================
+  JOUR 5 : Formulaires HTML
+  ==========================================
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 5 - Formulaires</title>
+  </head>
+  <body>
+
+    <header>
+      <h1>Formulaire d'inscription</h1>
+    </header>
+
+    <main>
+      <!-- method="post" : données envoyées de façon non visible dans l'URL -->
+      <!-- enctype="multipart/form-data" : obligatoire car on a un champ type="file" -->
+      <form action="/inscription" method="post" enctype="multipart/form-data">
+
+        <!-- Groupe 1 : informations personnelles -->
+        <fieldset>
+          <legend>Informations personnelles</legend>
+
+          <p>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
+          </p>
+
+          <p>
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" name="email" required>
+          </p>
+
+          <p>
+            <label for="mdp">Mot de passe :</label>
+            <input type="password" id="mdp" name="mdp" minlength="8" required>
+          </p>
+
+          <p>
+            <label for="naissance">Date de naissance :</label>
+            <input type="date" id="naissance" name="naissance" max="2026-08-30">
+          </p>
+
+          <p>
+            <label for="age">Âge :</label>
+            <input type="number" id="age" name="age" min="0" max="120" step="1">
+          </p>
+
+          <p>Genre :</p>
+          <label><input type="radio" name="genre" value="homme"> Homme</label>
+          <label><input type="radio" name="genre" value="femme"> Femme</label>
+          <label><input type="radio" name="genre" value="autre"> Autre</label>
+        </fieldset>
+
+        <!-- Groupe 2 : préférences -->
+        <fieldset>
+          <legend>Préférences</legend>
+
+          <p>
+            <label for="pays">Pays :</label>
+            <select id="pays" name="pays">
+              <option value="">-- Choisissez --</option>
+              <option value="fr" selected>France</option>
+              <option value="be">Belgique</option>
+              <option value="ch">Suisse</option>
+            </select>
+          </p>
+
+          <p>Centres d'intérêt :</p>
+          <label><input type="checkbox" name="interets[]" value="sport"> Sport</label>
+          <label><input type="checkbox" name="interets[]" value="lecture"> Lecture</label>
+          <label><input type="checkbox" name="interets[]" value="voyage"> Voyage</label>
+
+          <p>
+            <label for="fruit">Fruit préféré :</label>
+            <input type="text" id="fruit" name="fruit" list="liste-fruits">
+            <datalist id="liste-fruits">
+              <option value="Pomme">
+              <option value="Banane">
+              <option value="Orange">
+            </datalist>
+          </p>
+
+          <p>
+            <label for="volume">Niveau sonore préféré :</label>
+            <input type="range" id="volume" name="volume" min="0" max="100" step="10" value="50">
+          </p>
+        </fieldset>
+
+        <!-- Groupe 3 : message et fichier -->
+        <fieldset>
+          <legend>Message et documents</legend>
+
+          <p>
+            <label for="message">Votre message :</label><br>
+            <textarea id="message" name="message" rows="5" cols="40" placeholder="Écrivez ici..."></textarea>
+          </p>
+
+          <p>
+            <label for="cv">Votre CV (PDF/Word) :</label>
+            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
+          </p>
+        </fieldset>
+
+        <!-- Case obligatoire (validation native via required) -->
+        <p>
+          <label>
+            <input type="checkbox" name="cgv" required>
+            J'accepte les conditions générales
+          </label>
+        </p>
+
+        <!-- Champ caché, envoyé mais invisible pour l'utilisateur -->
+        <input type="hidden" name="source" value="site-web">
+
+        <!-- Boutons d'action -->
+        <p>
+          <button type="submit">S'inscrire</button>
+          <button type="reset">Réinitialiser</button>
+        </p>
+
+      </form>
+    </main>
+
+    <footer>
+      <p><small>© 2026 Formulaire d'exemple</small></p>
+    </footer>
+
+  </body>
+</html>
