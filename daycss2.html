@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 9 - Modèle de boîte</title>
+    <link rel="stylesheet" href="css2.css">
+</head>
+<body>
+    <!-- ================================================
+    HEADER
+    ================================================ -->
+    <header>
+        <h1>📦 Jour 9 : Modèle de boîte (Box Model)</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser le Box Model et ses composants 
+            (content, padding, border, margin).
+        </p>
+        <p>
+            <small>Formation 30 jours — HTML / CSS / JavaScript</small>
+        </p>
+    </header>
+    
+    <!-- ================================================
+    MAIN
+    ================================================ -->
+    <main>
+        <!-- ============================================
+        SECTION : VISUALISATION DU BOX MODEL
+        ============================================ -->
+        <section>
+            <h2>1. Le Box Model</h2>
+            
+            <div class="box-model-demo">
+                <div style="background: #fff3cd; padding: 10px; border-radius: 4px; margin-bottom: 5px; text-align: center; font-size: 0.9em;">
+                    <strong>MARGIN</strong> (marge extérieure)
+                </div>
+                <div style="background: #ffebee; padding: 10px; border-radius: 4px; margin-bottom: 5px; text-align: center; font-size: 0.9em;">
+                    <strong>BORDER</strong> (bordure)
+                </div>
+                <div style="background: #e8f4fd; padding: 10px; border-radius: 4px; margin-bottom: 5px; text-align: center; font-size: 0.9em;">
+                    <strong>PADDING</strong> (rembourrage intérieur)
+                </div>
+                <div class="content">
+                    <strong>CONTENT</strong> (contenu)
+                </div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Le Box Model en bref :</strong></p>
+                <ul>
+                    <li><strong>Content</strong> : le contenu visible</li>
+                    <li><strong>Padding</strong> : espace entre le contenu et la bordure</li>
+                    <li><strong>Border</strong> : bordure autour du padding</li>
+                    <li><strong>Margin</strong> : espace entre la bordure et les autres éléments</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : BOX-SIZING
+        ============================================ -->
+        <section>
+            <h2>2. Box-sizing</h2>
+            
+            <h3>content-box vs border-box</h3>
+            <div class="box-sizing-demo">
+                <div class="content-box">
+                    <strong>content-box</strong><br>
+                    width: 300px<br>
+                    padding: 20px<br>
+                    border: 5px<br>
+                    <span style="color: #e74c3c; font-weight: bold;">
+                        Total: 350px
+                    </span>
+                </div>
+                <div class="border-box">
+                    <strong>border-box</strong><br>
+                    width: 300px<br>
+                    padding: 20px<br>
+                    border: 5px<br>
+                    <span style="color: #2ecc71; font-weight: bold;">
+                        Total: 300px
+                    </span>
+                </div>
+            </div>
+            
+            <div class="warning">
+                <p><strong>⚠️ Recommandation :</strong> Utilisez toujours 
+                <code>box-sizing: border-box</code> sur tous les éléments pour 
+                faciliter les calculs de mise en page.</p>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : PADDING
+        ============================================ -->
+        <section>
+            <h2>3. Padding</h2>
+            
+            <h3>Différentes syntaxes</h3>
+            <div class="padding-examples">
+                <div class="padding-single">
+                    <code>padding: 20px;</code> (tous les côtés)
+                </div>
+                <div class="padding-two">
+                    <code>padding: 10px 30px;</code> (haut/bas | gauche/droite)
+                </div>
+                <div class="padding-three">
+                    <code>padding: 5px 15px 25px;</code> (haut | côtés | bas)
+                </div>
+                <div class="padding-four">
+                    <code>padding: 5px 10px 15px 20px;</code> (haut | droite | bas | gauche)
+                </div>
+                <div class="padding-percent">
+                    <code>padding: 5%;</code> (pourcentage du parent)
+                </div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 À retenir :</strong></p>
+                <ul>
+                    <li>Le padding est <strong>intérieur</strong> (entre contenu et bordure)</li>
+                    <li>Il agrandit la boîte (sauf avec <code>border-box</code>)</li>
+                    <li>Les pourcentages sont calculés par rapport à la <strong>largeur</strong> du parent</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : BORDER
+        ============================================ -->
+        <section>
+            <h2>4. Border</h2>
+            
+            <h3>Styles de bordure</h3>
+            <div class="border-examples">
+                <div class="border-solid">solid</div>
+                <div class="border-dashed">dashed</div>
+                <div class="border-dotted">dotted</div>
+                <div class="border-double">double</div>
+                <div class="border-groove">groove</div>
+                <div class="border-ridge">ridge</div>
+                <div class="border-inset">inset</div>
+                <div class="border-outset">outset</div>
+                <div class="border-none">none</div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Border-radius (coins arrondis)</h3>
+            <div class="radius-examples">
+                <div class="radius-10">10px</div>
+                <div class="radius-20">20px</div>
+                <div class="radius-50">50%<br>(cercle)</div>
+                <div class="radius-ellipse">50%/25%<br>(ellipse)</div>
+                <div class="radius-asym">30px 5px</div>
+                <div class="radius-custom">personnalisé</div>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : MARGIN
+        ============================================ -->
+        <section>
+            <h2>5. Margin</h2>
+            
+            <h3>Différentes syntaxes</h3>
+            <div class="margin-examples">
+                <div class="margin-single">
+                    <code>margin: 20px;</code> (tous les côtés)
+                </div>
+                <div class="margin-two">
+                    <code>margin: 10px 40px;</code> (haut/bas | gauche/droite)
+                </div>
+                <div class="margin-auto">
+                    <code>margin: 10px auto;</code> (centrage horizontal)
+                </div>
+                <div class="margin-negative">
+                    <code>margin: -10px;</code> (marge négative)
+                </div>
+            </div>
+            
+            <div class="warning" style="margin-top: 20px;">
+                <p><strong>⚠️ Fusion des marges (Margin Collapse) :</strong></p>
+                <p>Les marges verticales de deux éléments adjacents se fusionnent. 
+                Seule la plus grande est conservée.</p>
+                <p style="margin-top: 5px;">
+                    <small>Exemple : <code>margin-bottom: 30px</code> + 
+                    <code>margin-top: 20px</code> = <strong>30px</strong></small>
+                </p>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : OUTLINE
+        ============================================ -->
+        <section>
+            <h2>6. Outline</h2>
+            
+            <div class="outline-examples">
+                <div class="outline-simple">
+                    <strong>outline simple</strong><br>
+                    Ne prend pas d'espace
+                </div>
+                <div class="outline-offset">
+                    <strong>outline avec offset</strong><br>
+                    <code>outline-offset: 8px</code>
+                </div>
+                <div class="outline-dashed">
+                    <strong>outline dashed</strong><br>
+                    <code>outline: 3px dashed</code>
+                </div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Différence Border vs Outline :</strong></p>
+                <ul>
+                    <li><strong>Border</strong> : prend de l'espace, fait partie du Box Model</li>
+                    <li><strong>Outline</strong> : ne prend pas d'espace, se superpose</li>
+                    <li>L'outline est souvent utilisée pour le <code>:focus</code></li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : OVERFLOW
+        ============================================ -->
+        <section>
+            <h2>7. Overflow</h2>
+            
+            <h3>Gestion du débordement</h3>
+            <div class="overflow-examples">
+                <div class="overflow-visible">
+                    <strong>visible</strong><br>
+                    Le contenu déborde et reste visible.
+                    Lorem ipsum dolor sit amet.
+                </div>
+                <div class="overflow-hidden">
+                    <strong>hidden</strong><br>
+                    Le contenu débordant est coupé.
+                    Lorem ipsum dolor sit amet.
+                </div>
+                <div class="overflow-scroll">
+                    <strong>scroll</strong><br>
+                    Barres de défilement toujours visibles.
+                    Lorem ipsum dolor sit amet.
+                </div>
+                <div class="overflow-auto">
+                    <strong>auto</strong><br>
+                    Barres de défilement si nécessaire.
+                    Lorem ipsum dolor sit amet.
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Text-overflow: ellipsis</h3>
+            <div class="ellipsis-demo">
+                Ce texte est trop long et sera coupé avec des points de suspension...
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : MIN/MAX DIMENSIONS
+        ============================================ -->
+        <section>
+            <h2>8. Min-width, max-width, min-height, max-height</h2>
+            
+            <div class="min-max-demo">
+                <p><strong>Dimensions min/max</strong></p>
+                <ul>
+                    <li><code>min-width: 200px</code></li>
+                    <li><code>max-width: 600px</code></li>
+                    <li><code>min-height: 100px</code></li>
+                    <li><code>max-height: 200px</code></li>
+                </ul>
+                <p style="margin-top: 10px; color: #6c757d;">
+                    Redimensionnez la fenêtre pour voir l'effet.
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- ================================================
+    FOOTER
+    ================================================ -->
+    <footer>
+        <p>
+            <strong>📦 Jour 9 terminé</strong>
+        </p>
+        <p>
+            <small>
+                &copy; 2026 — Formation 30 jours HTML / CSS / JavaScript
+            </small>
+        </p>
+    </footer>
+</body>
+</html>

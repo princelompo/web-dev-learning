@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 12 - Positionnement</title>
+    <link rel="stylesheet" href="css12.css">
+</head>
+<body>
+    <!-- Menu fixe (position: fixed) -->
+    <nav class="fixed-menu">
+        <a href="#static">Static</a>
+        <a href="#relative">Relative</a>
+        <a href="#absolute">Absolute</a>
+        <a href="#fixed">Fixed</a>
+        <a href="#sticky">Sticky</a>
+        <a href="#zindex">Z-index</a>
+        <a href="#top">↑ Haut</a>
+    </nav>
+    
+    <!-- ================================================
+    HEADER
+    ================================================ -->
+    <header id="top">
+        <h1>📍 Jour 12 : Positionnement</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser les différentes valeurs de 
+            positionnement (static, relative, absolute, fixed, sticky).
+        </p>
+        <p>
+            <small>Formation 30 jours — HTML / CSS / JavaScript</small>
+        </p>
+    </header>
+    
+    <!-- ================================================
+    MAIN
+    ================================================ -->
+    <main>
+        <!-- ============================================
+        SECTION : STATIC
+        ============================================ -->
+        <section id="static">
+            <h2>1. Position: static (défaut)</h2>
+            
+            <div class="demo-container static-demo">
+                <div class="demo-box">Static (défaut)</div>
+                <p style="margin-top: 10px; color: #6c757d; font-size: 0.9em;">
+                    L'élément suit le flux normal de la page.
+                    <code>top</code>, <code>right</code>, <code>bottom</code>, 
+                    <code>left</code> n'ont aucun effet.
+                </p>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 static :</strong> Valeur par défaut de tous les éléments.</p>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : RELATIVE
+        ============================================ -->
+        <section id="relative">
+            <h2>2. Position: relative</h2>
+            
+            <h3>Décalage positif (top, left)</h3>
+            <div class="demo-container relative-demo">
+                <div class="demo-box demo-box-red">Relative (top:20px, left:30px)</div>
+                <p style="margin-top: 10px; color: #6c757d; font-size: 0.9em;">
+                    L'élément est décalé de 20px vers le bas et 30px vers la droite.
+                    L'espace d'origine est conservé.
+                </p>
+            </div>
+            
+            <h3>Décalage négatif</h3>
+            <div class="demo-container relative-negative">
+                <div class="demo-box demo-box-green">Relative (top:-20px, left:-30px)</div>
+                <p style="margin-top: 10px; color: #6c757d; font-size: 0.9em;">
+                    L'élément est décalé de 20px vers le haut et 30px vers la gauche.
+                    L'espace d'origine est conservé.
+                </p>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 relative :</strong></p>
+                <ul>
+                    <li>Positionné par rapport à sa position normale</li>
+                    <li>Conserve son espace dans le flux</li>
+                    <li>Utile comme parent pour les éléments <code>absolute</code></li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : ABSOLUTE
+        ============================================ -->
+        <section id="absolute">
+            <h2>3. Position: absolute</h2>
+            
+            <h3>Positionnement par rapport au parent</h3>
+            <div class="demo-container absolute-container absolute-demo">
+                <div class="demo-box demo-box-orange">Absolute (top:20px, right:20px)</div>
+                <p style="margin-top: 10px; color: #6c757d; font-size: 0.9em;">
+                    L'élément est positionné par rapport au parent positionné 
+                    (ce conteneur a <code>position: relative</code>).
+                </p>
+            </div>
+            
+            <h3>Centrage avec absolute</h3>
+            <div class="demo-container absolute-container absolute-center">
+                <div class="demo-box demo-box-purple">Absolute (centré)</div>
+                <p style="margin-top: 10px; color: #6c757d; font-size: 0.9em;">
+                    <code>top: 50%; left: 50%; transform: translate(-50%, -50%)</code>
+                </p>
+            </div>
+            
+            <h3>En bas à gauche</h3>
+            <div class="demo-container absolute-container absolute-bottom">
+                <div class="demo-box demo-box-red">Absolute (bottom:20px, left:20px)</div>
+                <p style="margin-top: 10px; color: #6c757d; font-size: 0.9em;">
+                    <code>bottom: 20px; left: 20px</code>
+                </p>
+            </div>
+            
+            <div class="warning">
+                <p><strong>⚠️ Important :</strong></p>
+                <ul>
+                    <li>L'élément est <strong>retiré du flux</strong> (les autres éléments se repositionnent)</li>
+                    <li>Positionné par rapport au <strong>parent positionné</strong> le plus proche</li>
+                    <li>Si aucun parent positionné, par rapport au <strong>viewport</strong></li>
+                    <li>Le parent doit avoir <code>position: relative</code> (ou autre)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : FIXED
+        ============================================ -->
+        <section id="fixed">
+            <h2>4. Position: fixed</h2>
+            
+            <div class="demo-container" style="min-height: 150px;">
+                <p style="color: #6c757d;">
+                    <strong>Exemple en cours d'utilisation :</strong>
+                </p>
+                <ul>
+                    <li>Le menu en haut de la page est en <code>position: fixed</code></li>
+                    <li>Il reste fixe lors du défilement</li>
+                </ul>
+                <div style="margin-top: 15px; background: #e8f4fd; padding: 15px; border-radius: 6px; border: 2px solid #0f3460;">
+                    <p><strong>🔵 Bouton fixe</strong></p>
+                    <p style="font-size: 0.9em;">
+                        Un bouton est en <code>position: fixed</code> en bas à droite de la page.
+                        Il reste visible lors du défilement.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 fixed :</strong></p>
+                <ul>
+                    <li>Positionné par rapport à la <strong>fenêtre</strong> (viewport)</li>
+                    <li><strong>Retiré du flux</strong></li>
+                    <li>Reste <strong>fixe</strong> lors du défilement</li>
+                    <li>Utile pour : menus, boutons d'action, popups</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : STICKY
+        ============================================ -->
+        <section id="sticky">
+            <h2>5. Position: sticky</h2>
+            
+            <div class="sticky-container">
+                <div class="sticky-header">📌 En-tête sticky (top: 70px)</div>
+                <div class="sticky-content">
+                    <p>
+                        Ce contenu défile normalement. L'en-tête reste collé 
+                        quand on le dépasse.
+                    </p>
+                    <p style="color: #6c757d; font-size: 0.9em;">
+                        <code>position: sticky; top: 70px;</code>
+                    </p>
+                    <p style="margin-top: 20px;">
+                        Faites défiler la page pour voir l'effet sticky. 
+                        L'en-tête reste collé tant que le conteneur est visible.
+                    </p>
+                    <p style="margin-top: 10px; color: #6c757d; font-size: 0.9em;">
+                        (Ajout de contenu pour le défilement)
+                    </p>
+                    <div style="height: 200px; background: linear-gradient(180deg, #f8f9fa, #dee2e6); border-radius: 6px; margin-top: 10px;"></div>
+                </div>
+            </div>
+            
+            <div class="note" style="margin-top: 20px;">
+                <p><strong>💡 sticky :</strong></p>
+                <ul>
+                    <li>Alterne entre <code>relative</code> et <code>fixed</code></li>
+                    <li>Se fixe quand l'élément atteint la valeur définie (<code>top</code>)</li>
+                    <li>Reste collé tant que le conteneur est visible</li>
+                    <li>Utile pour : en-têtes de table, sections, menus</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : Z-INDEX
+        ============================================ -->
+        <section id="zindex">
+            <h2>6. Z-index (ordre d'empilement)</h2>
+            
+            <div class="demo-container zindex-container">
+                <div class="zindex-box zindex-1">z-index: 1</div>
+                <div class="zindex-box zindex-2">z-index: 2</div>
+                <div class="zindex-box zindex-3">z-index: 3</div>
+                <div class="zindex-box zindex-negative">z-index: -1</div>
+                
+                <p style="margin-top: 160px; color: #6c757d; font-size: 0.9em;">
+                    Plus le <code>z-index</code> est élevé, plus l'élément est proche 
+                    de l'utilisateur.
+                </p>
+                <p style="color: #6c757d; font-size: 0.9em;">
+                    Ordre : z-index: -1 (derrière) → 1 → 2 → 3 (devant)
+                </p>
+            </div>
+            
+            <div class="warning">
+                <p><strong>⚠️ Règles du z-index :</strong></p>
+                <ul>
+                    <li>Ne fonctionne que sur les <strong>éléments positionnés</strong></li>
+                    <li>Valeurs : nombres entiers (positifs ou négatifs)</li>
+                    <li>Plus la valeur est élevée, plus l'élément est devant</li>
+                    <li>Les enfants héritent du contexte d'empilement du parent</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Bouton fixe (position: fixed) -->
+    <button class="fixed-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑ Haut
+    </button>
+    
+    <!-- ================================================
+    FOOTER
+    ================================================ -->
+    <footer>
+        <p>
+            <strong>📍 Jour 12 terminé</strong>
+        </p>
+        <p>
+            <small>
+                &copy; 2026 — Formation 30 jours HTML / CSS / JavaScript
+            </small>
+        </p>
+    </footer>
+</body>
+</html>
