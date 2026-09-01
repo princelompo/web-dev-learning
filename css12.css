@@ -1,0 +1,337 @@
+/* ==========================================
+           RESET ET STYLES DE BASE
+           ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.8;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  padding-top: 80px; /* Pour le header sticky */
+}
+
+header {
+  background: linear-gradient(135deg, #1a1a2e, #0f3460);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  color: white;
+  margin-bottom: 5px;
+}
+
+header p {
+  color: #a8d8ea;
+}
+
+footer {
+  background: #1a1a2e;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+section {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  min-height: 200px;
+}
+
+section h2 {
+  color: #1a1a2e;
+  border-bottom: 3px solid #0f3460;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+section h3 {
+  color: #0f3460;
+  margin: 15px 0 10px 0;
+}
+
+.note {
+  background: #e7f5ff;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #339af0;
+  margin: 10px 0;
+}
+
+.warning {
+  background: #fff3cd;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #f39c12;
+  margin: 10px 0;
+}
+
+/* ==========================================
+           CONTENEURS DE DÉMONSTRATION
+           ========================================== */
+.demo-container {
+  background: #f8f9fa;
+  border: 2px dashed #bdc3c7;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+  min-height: 150px;
+  position: relative;
+}
+
+.demo-box {
+  background: #0f3460;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 6px;
+  width: 150px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.demo-box-red {
+  background: #e74c3c;
+}
+
+.demo-box-green {
+  background: #2ecc71;
+  color: #1a1a2e;
+}
+
+.demo-box-orange {
+  background: #f39c12;
+  color: #1a1a2e;
+}
+
+.demo-box-purple {
+  background: #9b59b6;
+}
+
+/* ==========================================
+           STATIC (défaut)
+           ========================================== */
+.static-demo .demo-box {
+  position: static;
+}
+
+/* ==========================================
+           RELATIVE
+           ========================================== */
+.relative-demo .demo-box {
+  position: relative;
+  top: 20px;
+  left: 30px;
+}
+
+.relative-negative .demo-box {
+  position: relative;
+  top: -20px;
+  left: -30px;
+}
+
+/* ==========================================
+           ABSOLUTE
+           ========================================== */
+.absolute-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.absolute-demo .demo-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.absolute-center .demo-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.absolute-bottom .demo-box {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+/* ==========================================
+           FIXED (menu et bouton)
+           ========================================== */
+.fixed-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #1a1a2e;
+  color: white;
+  padding: 10px 20px;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0px;
+  font-size: 0.9em;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.fixed-menu a {
+  color: #a8d8ea;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.fixed-menu a:hover {
+  color: white;
+}
+
+.fixed-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #e94560;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 25px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+  z-index: 999;
+  transition: transform 0.3s;
+}
+
+.fixed-button:hover {
+  transform: scale(1.1);
+}
+
+/* ==========================================
+           STICKY
+           ========================================== */
+.sticky-container {
+  min-height: 300px;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 70px; /* Pour éviter le header */
+  background: #0f3460;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  z-index: 100;
+  font-weight: 600;
+}
+
+.sticky-content {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  margin-top: 10px;
+  min-height: 150px;
+}
+
+/* ==========================================
+           Z-INDEX
+           ========================================== */
+.zindex-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.zindex-box {
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.zindex-1 {
+  background: #e74c3c;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+}
+
+.zindex-2 {
+  background: #2ecc71;
+  top: 50px;
+  left: 50px;
+  z-index: 2;
+  color: #1a1a2e;
+}
+
+.zindex-3 {
+  background: #3498db;
+  top: 80px;
+  left: 80px;
+  z-index: 3;
+}
+
+.zindex-negative {
+  position: absolute;
+  background: #f39c12;
+  top: 120px;
+  left: 20px;
+  z-index: -1;
+  color: #1a1a2e;
+}
+
+/* ==========================================
+           RESPONSIVE
+           ========================================== */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+    padding-top: 70px;
+  }
+
+  section {
+    padding: 15px;
+  }
+
+  .fixed-menu {
+    font-size: 0.7em;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .fixed-button {
+    padding: 10px 18px;
+    font-size: 0.85em;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .demo-box {
+    width: 100px;
+    padding: 10px;
+    font-size: 0.85em;
+  }
+}
