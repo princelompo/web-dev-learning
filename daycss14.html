@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport essentiel pour le responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 15 - Responsive design et media queries</title>
+    <link rel="stylesheet" href="css14.css">
+</head>
+<body>
+    <!-- ================================================
+    HEADER
+    ================================================ -->
+    <header>
+        <h1>📱 Jour 15 : Responsive design et media queries</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser les media queries pour créer 
+            des sites adaptatifs.
+        </p>
+        <p class="orientation-demo">
+            Orientation actuelle :
+        </p>
+        <p>
+            <small>Formation 30 jours — HTML / CSS / JavaScript</small>
+        </p>
+    </header>
+    
+    <!-- ================================================
+    MAIN
+    ================================================ -->
+    <main>
+        <!-- ============================================
+        SECTION : PRINCIPES DU RESPONSIVE
+        ============================================ -->
+        <section>
+            <h2>1. Principes du Responsive Design</h2>
+            
+            <div class="note">
+                <p><strong>💡 Les 3 piliers :</strong></p>
+                <ul>
+                    <li><strong>Grilles fluides</strong> : unités relatives (%, fr, rem, vw/vh)</li>
+                    <li><strong>Images flexibles</strong> : <code>max-width: 100%; height: auto;</code></li>
+                    <li><strong>Media queries</strong> : points de rupture adaptés</li>
+                </ul>
+            </div>
+            
+            <h3>Exemple d'image responsive</h3>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='300'%3E%3Crect width='800' height='300' fill='%230f3460'/%3E%3Ctext x='400' y='150' font-family='Segoe UI' font-size='30' fill='white' text-anchor='middle'%3EImage responsive%3C/text%3E%3Ctext x='400' y='190' font-family='Segoe UI' font-size='18' fill='%23a8d8ea' text-anchor='middle'%3Emax-width: 100%25; height: auto%3C/text%3E%3C/svg%3E" 
+                 alt="Image responsive" 
+                 class="responsive-img">
+        </section>
+        
+        <!-- ============================================
+        SECTION : NAVIGATION RESPONSIVE
+        ============================================ -->
+        <section>
+            <h2>2. Navigation responsive</h2>
+            
+            <div class="nav-responsive">
+                <a href="#">Accueil</a>
+                <a href="#">Services</a>
+                <a href="#">À propos</a>
+                <a href="#">Contact</a>
+                <a href="#">Blog</a>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Comportement :</strong></p>
+                <ul>
+                    <li><strong>Mobile</strong> : empilé verticalement</li>
+                    <li><strong>Tablette+</strong> : horizontal</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : GRILLE RESPONSIVE
+        ============================================ -->
+        <section>
+            <h2>3. Grille responsive (CSS Grid)</h2>
+            
+            <div class="grid-responsive">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Points de rupture :</strong></p>
+                <ul>
+                    <li><strong>Mobile</strong> : 1 colonne</li>
+                    <li><strong>Tablette (768px)</strong> : 2 colonnes</li>
+                    <li><strong>Desktop (1024px)</strong> : 3 colonnes</li>
+                    <li><strong>Grand écran (1280px)</strong> : 4 colonnes</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : FLEXBOX RESPONSIVE
+        ============================================ -->
+        <section>
+            <h2>4. Flexbox responsive</h2>
+            
+            <div class="flex-responsive">
+                <div class="flex-item">Élément 1</div>
+                <div class="flex-item">Élément 2</div>
+                <div class="flex-item">Élément 3</div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Comportement :</strong></p>
+                <ul>
+                    <li><strong>Mobile</strong> : <code>flex-direction: column</code> (empilé)</li>
+                    <li><strong>Tablette+</strong> : <code>flex-direction: row</code> (horizontal)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : BREAKPOINTS ET COMPORTEMENTS
+        ============================================ -->
+        <section>
+            <h2>5. Breakpoints et comportements</h2>
+            
+            <div class="demo-box hide-on-mobile">
+                📱 <strong>Caché sur mobile</strong> (affiché à partir de 481px)
+            </div>
+            
+            <div class="demo-box show-on-mobile" style="background: var(--warning); color: var(--dark);">
+                📱 <strong>Visible sur mobile</strong> (caché à partir de 481px)
+            </div>
+            
+            <div class="no-print">
+                🖨️ Ceci <strong>n'apparaîtra pas</strong> à l'impression
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Classes utilitaires :</strong></p>
+                <ul>
+                    <li><code>.hide-on-mobile</code> : caché sur mobile</li>
+                    <li><code>.show-on-mobile</code> : visible uniquement sur mobile</li>
+                    <li><code>.no-print</code> : caché à l'impression</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : MEDIA QUERIES AVANCÉES
+        ============================================ -->
+        <section>
+            <h2>6. Media queries avancées</h2>
+            
+            <div class="note">
+                <p><strong>💡 Caractéristiques avancées :</strong></p>
+                <ul>
+                    <li><code>(prefers-color-scheme: dark)</code> — Mode sombre</li>
+                    <li><code>(orientation: portrait)</code> — Orientation portrait</li>
+                    <li><code>(hover: hover)</code> — Appareil avec souris</li>
+                    <li><code>(pointer: fine)</code> — Pointeur précis</li>
+                    <li><code>(prefers-reduced-motion: reduce)</code> — Réduction de mouvement</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <p><strong>⚠️ Testez en mode sombre !</strong></p>
+                <p>Les couleurs de cette page s'adaptent automatiquement 
+                selon les préférences de votre système.</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- ================================================
+    FOOTER
+    ================================================ -->
+    <footer>
+        <p>
+            <strong>📱 Jour 15 terminé</strong>
+        </p>
+        <p>
+            <small>
+                &copy; 2026 — Formation 30 jours HTML / CSS / JavaScript
+            </small>
+        </p>
+        <p style="margin-top: 5px; font-size: 0.8em; opacity: 0.7;">
+            Redimensionnez la fenêtre pour voir le responsive en action
+        </p>
+    </footer>
+</body>
+</html>

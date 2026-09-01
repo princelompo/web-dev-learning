@@ -1,0 +1,480 @@
+:root {
+  --primary: #0f3460;
+  --secondary: #e94560;
+  --success: #2ecc71;
+  --warning: #f39c12;
+  --light: #f8f9fa;
+  --dark: #1a1a2e;
+  --spacing: 20px;
+  --radius: 8px;
+
+  /* Breakpoints */
+  --mobile: 480px;
+  --tablette: 768px;
+  --desktop: 1024px;
+  --large: 1280px;
+}
+
+/* ==========================================
+            RESET ET STYLES DE BASE (MOBILE-FIRST)
+            ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.8;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  font-size: 14px; /* Taille de base mobile */
+  padding: 10px;
+}
+
+header {
+  background: linear-gradient(135deg, var(--dark), var(--primary));
+  color: white;
+  padding: var(--spacing);
+  border-radius: var(--radius);
+  margin-bottom: var(--spacing);
+}
+
+header h1 {
+  color: white;
+  font-size: 1.6em; /* Taille mobile */
+  margin-bottom: 5px;
+}
+
+header p {
+  color: #a8d8ea;
+  font-size: 0.9em;
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  padding: var(--spacing);
+  border-radius: var(--radius);
+  margin-top: var(--spacing);
+  text-align: center;
+  font-size: 0.85em;
+}
+
+section {
+  background: white;
+  padding: var(--spacing);
+  border-radius: var(--radius);
+  margin-bottom: var(--spacing);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+section h2 {
+  color: var(--dark);
+  border-bottom: 3px solid var(--primary);
+  padding-bottom: 8px;
+  margin-bottom: var(--spacing);
+  font-size: 1.4em;
+}
+
+section h3 {
+  color: var(--primary);
+  margin: 15px 0 10px 0;
+  font-size: 1.1em;
+}
+
+.note {
+  background: #e7f5ff;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 4px solid #339af0;
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+
+.warning {
+  background: #fff3cd;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 4px solid var(--warning);
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+
+/* ==========================================
+            NAVIGATION RESPONSIVE
+            ========================================== */
+.nav-responsive {
+  display: flex;
+  flex-direction: column; /* Mobile : empilé */
+  gap: 5px;
+  background: var(--dark);
+  padding: 10px;
+  border-radius: var(--radius);
+  margin: 10px 0;
+}
+
+.nav-responsive a {
+  color: #a8d8ea;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-align: center;
+  transition: background 0.3s;
+  font-size: 0.9em;
+}
+
+.nav-responsive a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* ==========================================
+            GRILLE RESPONSIVE
+            ========================================== */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile : 1 colonne */
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.grid-item {
+  background: var(--primary);
+  color: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 600;
+}
+
+.grid-item:nth-child(2) {
+  background: var(--secondary);
+}
+.grid-item:nth-child(3) {
+  background: var(--success);
+  color: var(--dark);
+}
+.grid-item:nth-child(4) {
+  background: var(--warning);
+  color: var(--dark);
+}
+.grid-item:nth-child(5) {
+  background: #9b59b6;
+}
+.grid-item:nth-child(6) {
+  background: #3498db;
+}
+
+/* ==========================================
+            EXEMPLE DE FLEXBOX RESPONSIVE
+            ========================================== */
+.flex-responsive {
+  display: flex;
+  flex-direction: column; /* Mobile : empilé */
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.flex-item {
+  background: var(--primary);
+  color: white;
+  padding: 15px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 600;
+  flex: 1;
+}
+
+.flex-item:nth-child(2) {
+  background: var(--secondary);
+}
+.flex-item:nth-child(3) {
+  background: var(--success);
+  color: var(--dark);
+}
+
+/* ==========================================
+            EXEMPLES DE MEDIA QUERIES
+            ========================================== */
+
+/* 
+                ==========================================
+                BREAKPOINT : TABLETTE (768px)
+                ==========================================
+            */
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 20px;
+  }
+
+  header h1 {
+    font-size: 2.2em;
+  }
+
+  header {
+    padding: 30px;
+  }
+
+  section {
+    padding: 25px;
+  }
+
+  .nav-responsive {
+    flex-direction: row; /* Tablette : horizontal */
+    justify-content: center;
+  }
+
+  .nav-responsive a {
+    padding: 8px 20px;
+  }
+
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr); /* Tablette : 2 colonnes */
+  }
+
+  .flex-responsive {
+    flex-direction: row; /* Tablette : horizontal */
+  }
+}
+
+/* 
+                ==========================================
+                BREAKPOINT : DESKTOP (1024px)
+                ==========================================
+            */
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  header h1 {
+    font-size: 2.8em;
+  }
+
+  header p {
+    font-size: 1em;
+  }
+
+  section {
+    padding: 35px;
+    margin-bottom: 30px;
+  }
+
+  section h2 {
+    font-size: 1.8em;
+  }
+
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr); /* Desktop : 3 colonnes */
+  }
+
+  .nav-responsive {
+    gap: 15px;
+  }
+
+  .nav-responsive a {
+    padding: 10px 25px;
+  }
+}
+
+/* 
+                ==========================================
+                BREAKPOINT : GRAND ÉCRAN (1280px)
+                ==========================================
+            */
+@media (min-width: 1280px) {
+  body {
+    padding: 40px;
+    max-width: 1400px;
+  }
+
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr); /* Grand écran : 4 colonnes */
+  }
+}
+
+/* 
+                ==========================================
+                ORIENTATION : PORTRAIT
+                ==========================================
+            */
+@media (orientation: portrait) {
+  .orientation-demo::after {
+    content: " 📱 Portrait";
+    color: var(--secondary);
+  }
+}
+
+/* 
+                ==========================================
+                ORIENTATION : PAYSAGE
+                ==========================================
+            */
+@media (orientation: landscape) {
+  .orientation-demo::after {
+    content: " 💻 Paysage";
+    color: var(--success);
+  }
+}
+
+/* 
+                ==========================================
+                PREFERS-COLOR-SCHEME : DARK
+                ==========================================
+            */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1a2e;
+    color: #e0e0e0;
+  }
+
+  section {
+    background: #2d2d44;
+    border-color: #444466;
+  }
+
+  section h2 {
+    color: #a8d8ea;
+    border-bottom-color: var(--secondary);
+  }
+
+  section h3 {
+    color: #a8d8ea;
+  }
+
+  .note {
+    background: #2d2d44;
+    border-left-color: #4a90d9;
+    color: #e0e0e0;
+  }
+
+  .warning {
+    background: #3d3d2d;
+    border-left-color: var(--warning);
+    color: #e0e0e0;
+  }
+
+  .flex-item,
+  .grid-item {
+    background: #3d3d5c;
+  }
+
+  .flex-item:nth-child(2),
+  .grid-item:nth-child(2) {
+    background: #6d2d3d;
+  }
+}
+
+/* 
+                ==========================================
+                PREFERS-REDUCED-MOTION
+                ==========================================
+            */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 
+                ==========================================
+                PRINT
+                ==========================================
+            */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    padding: 20px;
+  }
+
+  section {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+
+  header {
+    background: white !important;
+    color: black !important;
+  }
+
+  header h1 {
+    color: black !important;
+  }
+
+  header p {
+    color: #666 !important;
+  }
+
+  .nav-responsive {
+    display: none !important;
+  }
+}
+
+/* ==========================================
+            STYLES POUR LES DÉMONSTRATIONS
+            ========================================== */
+.demo-box {
+  background: var(--primary);
+  color: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  margin: 10px 0;
+}
+
+.demo-box:nth-child(2) {
+  background: var(--secondary);
+}
+.demo-box:nth-child(3) {
+  background: var(--success);
+  color: var(--dark);
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.no-print {
+  background: #ffebee;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid #e74c3c;
+  margin: 10px 0;
+}
+
+/* ==========================================
+            RESPONSIVE POUR L'EXERCICE
+            ========================================== */
+@media (max-width: 480px) {
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .show-on-mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 481px) {
+  .show-on-mobile {
+    display: none;
+  }
+}
