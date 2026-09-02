@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css16.css">
+    <title>Jour 16 - Transitions, animations, pseudo-classes</title>
+        <p>
+            <small>Formation 30 jours — HTML / CSS / JavaScript</small>
+        </p>
+    </header>
+    
+    <!-- ================================================
+    MAIN
+    ================================================ -->
+    <main>
+        <!-- ============================================
+        SECTION : TRANSITIONS
+        ============================================ -->
+        <section>
+            <h2>1. Transitions</h2>
+            
+            <div class="transition-demo">
+                <div class="transition-box">Hover moi !</div>
+                <div class="transition-box">Avec rebond</div>
+                <div class="transition-box">Lente</div>
+                <div class="transition-box">Avec délai</div>
+            </div>
+            
+            <h3>Transition sur input</h3>
+            <input type="text" class="input-transition" placeholder="Focus moi !">
+            
+            <div class="note">
+                <p><strong>💡 Propriétés de transition :</strong></p>
+                <ul>
+                    <li><code>transition-property</code> : propriété(s) à animer</li>
+                    <li><code>transition-duration</code> : durée (s ou ms)</li>
+                    <li><code>transition-timing-function</code> : fonction de temps</li>
+                    <li><code>transition-delay</code> : délai avant le début</li>
+                    <li><code>transition</code> : raccourci</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : ANIMATIONS @KEYFRAMES
+        ============================================ -->
+        <section>
+            <h2>2. Animations @keyframes</h2>
+            
+            <div class="animation-demo">
+                <div class="animation-box">Fade In</div>
+                <div class="animation-box">Bounce</div>
+                <div class="animation-box">Pulse</div>
+                <div class="animation-box">Rotate</div>
+                <div class="animation-box">Shake</div>
+                <div class="animation-box">Glow</div>
+                <div class="animation-box">Slide In</div>
+            </div>
+            
+            <h3 style="margin-top: 20px;">Bouton avec animation sur hover</h3>
+            <button class="custom-animation">✨ Clique-moi !</button>
+            
+            <h3 style="margin-top: 20px;">Animation avec pause au survol</h3>
+            <button class="pause-animation">🔄 Survolez-moi pour mettre en pause</button>
+            
+            <div class="note">
+                <p><strong>💡 Propriétés d'animation :</strong></p>
+                <ul>
+                    <li><code>animation-name</code> : nom de l'animation</li>
+                    <li><code>animation-duration</code> : durée</li>
+                    <li><code>animation-timing-function</code> : fonction de temps</li>
+                    <li><code>animation-delay</code> : délai</li>
+                    <li><code>animation-iteration-count</code> : nombre de répétitions</li>
+                    <li><code>animation-direction</code> : direction (normal, reverse, alternate)</li>
+                    <li><code>animation-fill-mode</code> : état avant/après</li>
+                    <li><code>animation-play-state</code> : lecture/pause</li>
+                    <li><code>animation</code> : raccourci</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : PSEUDO-CLASSES AVANCÉES
+        ============================================ -->
+        <section>
+            <h2>3. Pseudo-classes avancées</h2>
+            
+            <h3>:nth-child</h3>
+            <ul class="list-demo nth-demo">
+                <li>Élément 1</li>
+                <li>Élément 2 (nth-child(2))</li>
+                <li>Élément 3</li>
+                <li>Élément 4 (pair)</li>
+                <li>Élément 5</li>
+                <li>Élément 6 (pair)</li>
+                <li>Élément 7</li>
+                <li>Élément 8 (pair)</li>
+            </ul>
+            
+            <h3>:not() — négation</h3>
+            <ul class="list-demo not-demo">
+                <li>Élément normal</li>
+                <li>Élément normal</li>
+                <li class="excluded">Exclu (excluded)</li>
+                <li>Élément normal</li>
+                <li>Élément normal</li>
+            </ul>
+            
+            <h3>:has() — contient un élément</h3>
+            <div class="has-demo">
+                <p>Paragraphe normal</p>
+            </div>
+            <div class="has-demo">
+                <p class="highlight">Paragraphe avec <strong>highlight</strong></p>
+            </div>
+            <div class="has-demo">
+                <p>Paragraphe avec image</p>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%232ecc71'/%3E%3Ctext x='25' y='32' font-size='20' text-anchor='middle' fill='white'%3E📷%3C/text%3E%3C/svg%3E" alt="Icon" style="max-width: 50px;">
+            </div>
+            
+            <h3>:focus-within</h3>
+            <div class="focus-demo">
+                <p><strong>Focus à l'intérieur</strong></p>
+                <input type="text" placeholder="Cliquez ici...">
+            </div>
+            
+            <h3>:target</h3>
+            <div id="target-demo">
+                <p><strong>Cette section</strong></p>
+                <p>Cliquez sur le lien ci-dessous pour cibler cette section :</p>
+                <a href="#target-demo" style="display: inline-block; padding: 8px 16px; background: #0f3460; color: white; border-radius: 4px; text-decoration: none;">🎯 Cibler cette section</a>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Pseudo-classes avancées :</strong></p>
+                <ul>
+                    <li><code>:nth-child()</code> : sélectionne le nième enfant</li>
+                    <li><code>:nth-of-type()</code> : sélectionne le nième élément de son type</li>
+                    <li><code>:not()</code> : négation</li>
+                    <li><code>:has()</code> : contient un élément spécifique</li>
+                    <li><code>:focus-within</code> : focus à l'intérieur</li>
+                    <li><code>:target</code> : élément ciblé par l'URL</li>
+                    <li><code>:is()</code> : sélection multiple</li>
+                    <li><code>:where()</code> : comme :is() mais spécificité 0</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : PSEUDO-ÉLÉMENTS AVANCÉS
+        ============================================ -->
+        <section>
+            <h2>4. Pseudo-éléments avancés</h2>
+            
+            <h3>::first-letter (lettrine)</h3>
+            <p class="dropcap">
+                L a lettrine est une technique typographique qui permet de mettre 
+                en valeur la première lettre d'un paragraphe. Elle est souvent 
+                utilisée dans les livres et les magazines.
+            </p>
+            
+            <h3>::first-line</h3>
+            <p class="first-line-demo">
+                La première ligne de ce paragraphe est stylée différemment. 
+                Cette technique est utile pour mettre en valeur le début d'un texte 
+                ou pour créer des effets typographiques.
+            </p>
+            
+            <h3>::selection</h3>
+            <p class="selection-demo">
+                Sélectionnez ce texte pour voir l'effet de <code>::selection</code>. 
+                La couleur de fond et la couleur du texte changent.
+            </p>
+            
+            <h3>::marker</h3>
+            <ul class="marker-demo">
+                <li>Élément avec puce personnalisée</li>
+                <li>Élément avec puce personnalisée</li>
+                <li>Élément avec puce personnalisée</li>
+                <li>Élément avec puce personnalisée</li>
+            </ul>
+            
+            <h3>::before et ::after</h3>
+            <p class="before-after-demo">
+                Ce paragraphe a des étoiles avant et après grâce à 
+                <code>::before</code> et <code>::after</code>.
+            </p>
+            
+            <div class="note">
+                <p><strong>💡 Pseudo-éléments :</strong></p>
+                <ul>
+                    <li><code>::before</code> : avant le contenu</li>
+                    <li><code>::after</code> : après le contenu</li>
+                    <li><code>::first-letter</code> : première lettre</li>
+                    <li><code>::first-line</code> : première ligne</li>
+                    <li><code>::selection</code> : texte sélectionné</li>
+                    <li><code>::marker</code> : puce de liste</li>
+                    <li><code>::placeholder</code> : placeholder d'input</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <!-- ================================================
+    FOOTER
+    ================================================ -->
+    <footer>
+        <p>
+            <strong>✨ Jour 16 terminé</strong>
+        </p>
+        <p>
+            <small>
+                &copy; 2026 — Formation 30 jours HTML / CSS / JavaScript
+            </small>
+        </p>
+    </footer>
+</body>
+</html>
