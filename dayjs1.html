@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="js1.css">
+    <title>Jour 18 - Bases du JavaScript</title>
+</head>
+<body>
+    <!-- ================================================
+    HEADER
+    ================================================ -->
+    <header>
+        <h1>📘 Jour 18 : Bases du JavaScript</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser les bases du langage 
+            JavaScript (variables, types, opérateurs).
+        </p>
+        <p>
+            <small>Formation 30 jours — HTML / CSS / JavaScript</small>
+        </p>
+    </header>
+    
+    <!-- ================================================
+    MAIN
+    ================================================ -->
+    <main>
+        <!-- ============================================
+        SECTION : VARIABLES
+        ============================================ -->
+        <section>
+            <h2>1. Les variables</h2>
+            
+            <h3>var, let, const</h3>
+            <div class="demo-box">
+                <span class="comment">// var (ancienne méthode)</span><br>
+                <span class="keyword">var</span> nom = <span class="string">"Jean"</span>;<br>
+                <span class="keyword">var</span> age = <span class="number">25</span>;<br>
+                <br>
+                <span class="comment">// let (variable modifiable)</span><br>
+                <span class="keyword">let</span> ville = <span class="string">"Paris"</span>;<br>
+                ville = <span class="string">"Lyon"</span>; <span class="comment">// Réaffectation possible</span><br>
+                <br>
+                <span class="comment">// const (constante)</span><br>
+                <span class="keyword">const</span> PI = <span class="number">3.14159</span>;<br>
+                <span class="comment">// PI = 3.14; // Erreur !</span>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Règle d'or :</strong></p>
+                <ul>
+                    <li>Utiliser <code>const</code> par défaut</li>
+                    <li>Utiliser <code>let</code> si la variable doit être réaffectée</li>
+                    <li>Éviter <code>var</code> (ancienne méthode)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : TYPES
+        ============================================ -->
+        <section>
+            <h2>2. Les types de données</h2>
+            
+            <h3>Types primitifs</h3>
+            <div class="demo-box">
+                <span class="comment">// String</span><br>
+                <span class="keyword">const</span> nom = <span class="string">"Jean"</span>;<br>
+                <span class="keyword">const</span> message = <span class="string">`Bonjour ${nom}`</span>;<br>
+                <br>
+                <span class="comment">// Number</span><br>
+                <span class="keyword">const</span> age = <span class="number">25</span>;<br>
+                <span class="keyword">const</span> prix = <span class="number">19.99</span>;<br>
+                <br>
+                <span class="comment">// Boolean</span><br>
+                <span class="keyword">const</span> estMajeur = <span class="keyword">true</span>;<br>
+                <span class="keyword">const</span> estEnfant = <span class="keyword">false</span>;<br>
+                <br>
+                <span class="comment">// Undefined</span><br>
+                <span class="keyword">let</span> x; <span class="comment">// undefined</span><br>
+                <br>
+                <span class="comment">// Null</span><br>
+                <span class="keyword">let</span> y = <span class="keyword">null</span>;<br>
+                <br>
+                <span class="comment">// Symbol</span><br>
+                <span class="keyword">const</span> id = Symbol(<span class="string">"id"</span>);<br>
+                <br>
+                <span class="comment">// BigInt</span><br>
+                <span class="keyword">const</span> grand = <span class="number">9007199254740991n</span>;
+            </div>
+            
+            <h3>Vérification des types</h3>
+            <div class="demo-box">
+                <span class="comment">// typeof</span><br>
+                console.log(<span class="keyword">typeof</span> <span class="string">"texte"</span>); <span class="comment">// "string"</span><br>
+                console.log(<span class="keyword">typeof</span> <span class="number">42</span>); <span class="comment">// "number"</span><br>
+                console.log(<span class="keyword">typeof</span> <span class="keyword">true</span>); <span class="comment">// "boolean"</span><br>
+                console.log(<span class="keyword">typeof</span> <span class="keyword">undefined</span>); <span class="comment">// "undefined"</span><br>
+                console.log(<span class="keyword">typeof</span> <span class="keyword">null</span>); <span class="comment">// "object" (bug historique)</span>
+            </div>
+            
+            <div class="warning">
+                <p><strong>⚠️ Attention :</strong></p>
+                <ul>
+                    <li><code>typeof null</code> retourne <code>"object"</code> (bug historique)</li>
+                    <li><code>typeof []</code> retourne <code>"object"</code></li>
+                    <li>Utiliser <code>Array.isArray()</code> pour vérifier un tableau</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : OPÉRATEURS
+        ============================================ -->
+        <section>
+            <h2>3. Les opérateurs</h2>
+            
+            <h3>Opérateurs arithmétiques</h3>
+            <div class="demo-box">
+                <span class="keyword">const</span> a = <span class="number">10</span>;<br>
+                <span class="keyword">const</span> b = <span class="number">3</span>;<br>
+                <br>
+                console.log(a + b); <span class="comment">// 13 (addition)</span><br>
+                console.log(a - b); <span class="comment">// 7 (soustraction)</span><br>
+                console.log(a * b); <span class="comment">// 30 (multiplication)</span><br>
+                console.log(a / b); <span class="comment">// 3.333... (division)</span><br>
+                console.log(a % b); <span class="comment">// 1 (modulo)</span><br>
+                console.log(a ** b); <span class="comment">// 1000 (exponentiation)</span>
+            </div>
+            
+            <h3>Opérateurs de comparaison</h3>
+            <div class="demo-box">
+                <span class="comment">// Égalité</span><br>
+                console.log(<span class="number">5</span> == <span class="string">"5"</span>); <span class="comment">// true (conversion)</span><br>
+                console.log(<span class="number">5</span> === <span class="string">"5"</span>); <span class="comment">// false (strict)</span><br>
+                <br>
+                <span class="comment">// Inégalité</span><br>
+                console.log(<span class="number">5</span> != <span class="string">"5"</span>); <span class="comment">// false</span><br>
+                console.log(<span class="number">5</span> !== <span class="string">"5"</span>); <span class="comment">// true</span><br>
+                <br>
+                <span class="comment">// Comparaisons</span><br>
+                console.log(<span class="number">10</span> > <span class="number">5</span>); <span class="comment">// true</span><br>
+                console.log(<span class="number">10</span> >= <span class="number">10</span>); <span class="comment">// true</span><br>
+                console.log(<span class="number">5</span> < <span class="number">10</span>); <span class="comment">// true</span><br>
+                console.log(<span class="number">5</span> <= <span class="number">5</span>); <span class="comment">// true</span>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Règle d'or :</strong></p>
+                <ul>
+                    <li>Toujours utiliser <code>===</code> et <code>!==</code></li>
+                    <li>Éviter <code>==</code> et <code>!=</code> (conversion implicite)</li>
+                </ul>
+            </div>
+            
+            <h3>Opérateurs logiques</h3>
+            <div class="demo-box">
+                <span class="comment">// ET (&&)</span><br>
+                console.log(<span class="keyword">true</span> && <span class="keyword">true</span>); <span class="comment">// true</span><br>
+                console.log(<span class="keyword">true</span> && <span class="keyword">false</span>); <span class="comment">// false</span><br>
+                <br>
+                <span class="comment">// OU (||)</span><br>
+                console.log(<span class="keyword">true</span> || <span class="keyword">false</span>); <span class="comment">// true</span><br>
+                console.log(<span class="keyword">false</span> || <span class="keyword">false</span>); <span class="comment">// false</span><br>
+                <br>
+                <span class="comment">// NON (!)</span><br>
+                console.log(!<span class="keyword">true</span>); <span class="comment">// false</span><br>
+                console.log(!<span class="keyword">false</span>); <span class="comment">// true</span>
+            </div>
+            
+            <h3>Opérateur ternaire</h3>
+            <div class="demo-box">
+                <span class="keyword">const</span> age = <span class="number">18</span>;<br>
+                <span class="keyword">const</span> statut = age >= <span class="number">18</span> ? <span class="string">"Majeur"</span> : <span class="string">"Mineur"</span>;<br>
+                console.log(statut); <span class="comment">// "Majeur"</span>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : CONVERSION
+        ============================================ -->
+        <section>
+            <h2>4. Conversion de types</h2>
+            
+            <h3>Conversion explicite</h3>
+            <div class="demo-box">
+                <span class="comment">// Vers String</span><br>
+                String(<span class="number">42</span>); <span class="comment">// "42"</span><br>
+                <span class="number">42</span>.toString(); <span class="comment">// "42"</span><br>
+                <br>
+                <span class="comment">// Vers Number</span><br>
+                Number(<span class="string">"42"</span>); <span class="comment">// 42</span><br>
+                parseInt(<span class="string">"42px"</span>); <span class="comment">// 42</span><br>
+                parseFloat(<span class="string">"3.14"</span>); <span class="comment">// 3.14</span><br>
+                <br>
+                <span class="comment">// Vers Boolean</span><br>
+                Boolean(<span class="number">1</span>); <span class="comment">// true</span><br>
+                Boolean(<span class="number">0</span>); <span class="comment">// false</span><br>
+                Boolean(<span class="string">""</span>); <span class="comment">// false</span><br>
+                Boolean(<span class="string">"texte"</span>); <span class="comment">// true</span>
+            </div>
+            
+            <div class="warning">
+                <p><strong>⚠️ Falsy values :</strong></p>
+                <p>
+                    Ces valeurs sont <strong>falsy</strong> (deviennent false en booléen) :
+                    <code>false</code>, <code>0</code>, <code>""</code>, 
+                    <code>null</code>, <code>undefined</code>, <code>NaN</code>
+                </p>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : INTERACTIF
+        ============================================ -->
+        <section>
+            <h2>5. Testez en direct !</h2>
+            
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
+                <button onclick="demoVariables()">📦 Variables</button>
+                <button onclick="demoTypes()">🔍 Types</button>
+                <button onclick="demoOperateurs()">🧮 Opérateurs</button>
+                <button onclick="demoConversion()">🔄 Conversion</button>
+                <button onclick="clearOutput()">🗑️ Effacer</button>
+            </div>
+            
+            <div id="output" class="output">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour voir le résultat...</span>
+            </div>
+            <script src="js1.js"></script>
+        </section>
+    </main>
+    
+    <!-- ================================================
+    FOOTER
+    ================================================ -->
+    <footer>
+        <p>
+            <strong>📘 Jour 18 terminé</strong>
+        </p>
+        <p>
+            <small>
+                &copy; 2026 — Formation 30 jours HTML / CSS / JavaScript
+            </small>
+        </p>
+    </footer>
+</body>
+</html>
