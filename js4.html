@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 21 - Tableaux et méthodes</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        header h1 { color: white; margin-bottom: 10px; }
+        header p { color: #a8d8ea; }
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        section h2 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        section h3 { color: #0f3460; margin: 15px 0 10px 0; }
+        .note { background: #e7f5ff; padding: 15px; border-radius: 6px; border-left: 4px solid #339af0; margin: 10px 0; }
+        .warning { background: #fff3cd; padding: 15px; border-radius: 6px; border-left: 4px solid #f39c12; margin: 10px 0; }
+        .demo-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+        .demo-box .comment { color: #6c757d; font-style: italic; }
+        .demo-box .keyword { color: #0f3460; font-weight: bold; }
+        .demo-box .string { color: #2ecc71; }
+        .demo-box .number { color: #f39c12; }
+        .demo-box .function { color: #e94560; }
+        .output {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            min-height: 60px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        .btn-group button {
+            padding: 10px 20px;
+            background: #0f3460;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+        .btn-group button:hover { background: #e94560; transform: translateY(-2px); }
+        .btn-group button.danger { background: #e74c3c; }
+        .btn-group button.danger:hover { background: #c0392b; }
+        @media (max-width: 768px) { body { padding: 10px; } section { padding: 15px; } .demo-box { font-size: 0.8em; } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📊 Jour 21 : Tableaux et méthodes</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser la création et la manipulation 
+            des tableaux avec toutes leurs méthodes.
+        </p>
+        <p><small>Formation 30 jours — HTML / CSS / JavaScript</small></p>
+    </header>
+    
+    <main>
+        <!-- ============================================
+        SECTION : CRÉATION ET MÉTHODES DE BASE
+        ============================================ -->
+        <section>
+            <h2>1. Création et méthodes de base</h2>
+            
+            <h3>Création de tableaux</h3>
+            <div class="demo-box">
+                <span class="comment">// Syntaxe littérale</span><br>
+                <span class="keyword">const</span> fruits = [<span class="string">"pomme"</span>, <span class="string">"banane"</span>, <span class="string">"orange"</span>];<br>
+                <br>
+                <span class="comment">// Constructeur</span><br>
+                <span class="keyword">const</span> nombres = <span class="keyword">new</span> Array(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);<br>
+                <br>
+                <span class="comment">// Array.from()</span><br>
+                <span class="keyword">const</span> lettres = Array.from(<span class="string">"Bonjour"</span>);<br>
+                <span class="comment">// ["B", "o", "n", "j", "o", "u", "r"]</span>
+            </div>
+            
+            <h3>Méthodes de base (push, pop, shift, unshift)</h3>
+            <div class="demo-box">
+                <span class="comment">// push : ajouter à la fin</span><br>
+                fruits.push(<span class="string">"kiwi"</span>); <span class="comment">// ["pomme", "banane", "orange", "kiwi"]</span><br>
+                <br>
+                <span class="comment">// pop : supprimer à la fin</span><br>
+                <span class="keyword">const</span> dernier = fruits.pop(); <span class="comment">// "kiwi"</span><br>
+                <br>
+                <span class="comment">// unshift : ajouter au début</span><br>
+                fruits.unshift(<span class="string">"fraise"</span>);<br>
+                <br>
+                <span class="comment">// shift : supprimer au début</span><br>
+                <span class="keyword">const</span> premier = fruits.shift(); <span class="comment">// "fraise"</span>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : MÉTHODES D'ITÉRATION
+        ============================================ -->
+        <section>
+            <h2>2. Méthodes d'itération</h2>
+            
+            <h3>forEach, map, filter, reduce</h3>
+            <div class="demo-box">
+                <span class="comment">// forEach : parcourir</span><br>
+                fruits.forEach((fruit, i) => {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="string">`${i}: ${fruit}`</span>);<br>
+                });<br>
+                <br>
+                <span class="comment">// map : transformer</span><br>
+                <span class="keyword">const</span> longueurs = fruits.map(fruit => fruit.length);<br>
+                <span class="comment">// [5, 6, 6]</span><br>
+                <br>
+                <span class="comment">// filter : filtrer</span><br>
+                <span class="keyword">const</span> longues = fruits.filter(fruit => fruit.length > <span class="number">5</span>);<br>
+                <span class="comment">// ["banane", "orange"]</span><br>
+                <br>
+                <span class="comment">// reduce : réduire</span><br>
+                <span class="keyword">const</span> total = fruits.reduce((acc, fruit) => acc + fruit.length, <span class="number">0</span>);<br>
+                <span class="comment">// 17</span>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Méthodes d'itération :</strong></p>
+                <ul>
+                    <li><code>forEach</code> : parcourt sans retour</li>
+                    <li><code>map</code> : transforme chaque élément</li>
+                    <li><code>filter</code> : garde les éléments qui satisfont une condition</li>
+                    <li><code>reduce</code> : réduit à une valeur unique</li>
+                    <li><code>some</code> / <code>every</code> : vérifications</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : INTERACTIF
+        ============================================ -->
+        <section>
+            <h2>3. Testez en direct !</h2>
+            
+            <div class="btn-group">
+                <button onclick="demoPushPop()">📦 push/pop</button>
+                <button onclick="demoMapFilter()">🔄 map/filter</button>
+                <button onclick="demoReduce()">📉 reduce</button>
+                <button onclick="demoFind()">🔍 find</button>
+                <button onclick="demoSort()">📊 sort</button>
+                <button onclick="clearOutput()" class="danger">🗑️ Effacer</button>
+            </div>
+            
+            <div id="output" class="output">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour voir le résultat...</span>
+            </div>
+            
+            <script>
+                function display(message) {
+                    const output = document.getElementById('output');
+                    output.textContent = message;
+                    console.log(message);
+                }
+                
+                function clearOutput() {
+                    display('Effacé. Cliquez sur un bouton pour tester...');
+                }
+                
+                function demoPushPop() {
+                    let result = '=== push / pop / shift / unshift ===\n\n';
+                    
+                    const fruits = ['pomme', 'banane', 'orange'];
+                    result += `Initial : [${fruits.join(', ')}]\n\n`;
+                    
+                    // push
+                    fruits.push('kiwi');
+                    result += `push('kiwi') : [${fruits.join(', ')}]\n`;
+                    
+                    fruits.push('mangue', 'ananas');
+                    result += `push('mangue', 'ananas') : [${fruits.join(', ')}]\n\n`;
+                    
+                    // pop
+                    const pop = fruits.pop();
+                    result += `pop() → "${pop}" : [${fruits.join(', ')}]\n\n`;
+                    
+                    // unshift
+                    fruits.unshift('fraise');
+                    result += `unshift('fraise') : [${fruits.join(', ')}]\n\n`;
+                    
+                    // shift
+                    const shift = fruits.shift();
+                    result += `shift() → "${shift}" : [${fruits.join(', ')}]`;
+                    
+                    display(result);
+                }
+                
+                function demoMapFilter() {
+                    let result = '=== map / filter ===\n\n';
+                    
+                    const nombres = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                    result += `Nombres : [${nombres.join(', ')}]\n\n`;
+                    
+                    // map
+                    const doubles = nombres.map(n => n * 2);
+                    result += `→ map(x => x * 2) :\n  [${doubles.join(', ')}]\n\n`;
+                    
+                    const carres = nombres.map(n => n * n);
+                    result += `→ map(x => x²) :\n  [${carres.join(', ')}]\n\n`;
+                    
+                    // filter
+                    const pairs = nombres.filter(n => n % 2 === 0);
+                    result += `→ filter(x => x % 2 === 0) :\n  [${pairs.join(', ')}]\n\n`;
+                    
+                    const grands = nombres.filter(n => n > 5);
+                    result += `→ filter(x => x > 5) :\n  [${grands.join(', ')}]`;
+                    
+                    display(result);
+                }
+                
+                function demoReduce() {
+                    let result = '=== reduce ===\n\n';
+                    
+                    const nombres = [1, 2, 3, 4, 5];
+                    result += `Nombres : [${nombres.join(', ')}]\n\n`;
+                    
+                    // Somme
+                    const somme = nombres.reduce((acc, n) => acc + n, 0);
+                    result += `→ Somme : ${somme}\n\n`;
+                    
+                    // Produit
+                    const produit = nombres.reduce((acc, n) => acc * n, 1);
+                    result += `→ Produit : ${produit}\n\n`;
+                    
+                    // Maximum
+                    const max = nombres.reduce((acc, n) => n > acc ? n : acc, 0);
+                    result += `→ Maximum : ${max}\n\n`;
+                    
+                    // Comptage d'occurrences
+                    const fruits = ['pomme', 'banane', 'pomme', 'orange', 'banane', 'pomme'];
+                    const compte = fruits.reduce((acc, fruit) => {
+                        acc[fruit] = (acc[fruit] || 0) + 1;
+                        return acc;
+                    }, {});
+                    
+                    result += `→ Comptage des fruits :\n`;
+                    for (const [fruit, count] of Object.entries(compte)) {
+                        result += `  ${fruit} : ${count}\n`;
+                    }
+                    
+                    display(result);
+                }
+                
+                function demoFind() {
+                    let result = '=== find / some / every ===\n\n';
+                    
+                    const personnes = [
+                        { nom: 'Jean', age: 25 },
+                        { nom: 'Marie', age: 30 },
+                        { nom: 'Pierre', age: 20 },
+                        { nom: 'Sophie', age: 35 }
+                    ];
+                    
+                    result += 'Personnes :\n';
+                    for (const p of personnes) {
+                        result += `  ${p.nom} (${p.age} ans)\n`;
+                    }
+                    result += '\n';
+                    
+                    // find
+                    const trouve = personnes.find(p => p.age > 28);
+                    result += `→ find(age > 28) : ${trouve.nom} (${trouve.age} ans)\n\n`;
+                    
+                    // findIndex
+                    const index = personnes.findIndex(p => p.nom === 'Pierre');
+                    result += `→ findIndex(Pierre) : ${index}\n\n`;
+                    
+                    // some
+                    const aPlusDe30 = personnes.some(p => p.age > 30);
+                    result += `→ some(age > 30) : ${aPlusDe30}\n\n`;
+                    
+                    // every
+                    const tousMajeurs = personnes.every(p => p.age >= 18);
+                    result += `→ every(age >= 18) : ${tousMajeurs}`;
+                    
+                    display(result);
+                }
+                
+                function demoSort() {
+                    let result = '=== sort ===\n\n';
+                    
+                    const nombres = [10, 2, 30, 4, 20];
+                    result += `Nombres : [${nombres.join(', ')}]\n\n`;
+                    
+                    // Copie pour ne pas muter l'original
+                    const trieCroissant = [...nombres].sort((a, b) => a - b);
+                    result += `→ Croissant : [${trieCroissant.join(', ')}]\n\n`;
+                    
+                    const trieDecroissant = [...nombres].sort((a, b) => b - a);
+                    result += `→ Décroissant : [${trieDecroissant.join(', ')}]\n\n`;
+                    
+                    // Trier des chaînes
+                    const fruits = ['orange', 'banane', 'pomme', 'kiwi'];
+                    result += `Fruits : [${fruits.join(', ')}]\n`;
+                    const trie = [...fruits].sort();
+                    result += `→ Trier : [${trie.join(', ')}]\n\n`;
+                    
+                    // Trier des objets
+                    const personnes = [
+                        { nom: 'Jean', age: 25 },
+                        { nom: 'Marie', age: 30 },
+                        { nom: 'Pierre', age: 20 }
+                    ];
+                    
+                    result += 'Personnes (tri par âge) :\n';
+                    const trieAge = [...personnes].sort((a, b) => a.age - b.age);
+                    for (const p of trieAge) {
+                        result += `  ${p.nom} (${p.age} ans)\n`;
+                    }
+                    
+                    display(result);
+                }
+            </script>
+        </section>
+    </main>
+    
+    <footer>
+        <p><strong>📊 Jour 21 terminé</strong></p>
+        <p><small>&copy; 2026 — Formation 30 jours HTML / CSS / JavaScript</small></p>
+    </footer>
+</body>
+</html>
