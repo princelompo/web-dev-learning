@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="js3.css">
+    <title>Jour 20 - Fonctions</title>
+</head>
+<body>
+    <header>
+        <h1>⚡ Jour 20 : Fonctions</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser les fonctions (déclarations, 
+            expressions, arrow functions, portée, closures).
+        </p>
+        <p><small>Formation 30 jours — HTML / CSS / JavaScript</small></p>
+    </header>
+    
+    <main>
+        <!-- ============================================
+        SECTION : DÉCLARATIONS DE FONCTIONS
+        ============================================ -->
+        <section>
+            <h2>1. Déclarations de fonctions</h2>
+            
+            <h3>Function Declaration</h3>
+            <div class="demo-box">
+                <span class="comment">// Déclaration de fonction</span><br>
+                <span class="keyword">function</span> <span class="function">additionner</span>(a, b) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="return">a + b</span>;<br>
+                }<br>
+                <br>
+                <span class="keyword">const</span> resultat = <span class="function">additionner</span>(<span class="number">5</span>, <span class="number">3</span>);<br>
+                console.log(resultat); <span class="comment">// 8</span>
+            </div>
+            
+            <h3>Function Expression</h3>
+            <div class="demo-box">
+                <span class="comment">// Expression de fonction</span><br>
+                <span class="keyword">const</span> <span class="function">multiplier</span> = <span class="keyword">function</span>(a, b) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="return">a * b</span>;<br>
+                };<br>
+                <br>
+                console.log(<span class="function">multiplier</span>(<span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 15</span>
+            </div>
+            
+            <h3>Arrow Function</h3>
+            <div class="demo-box">
+                <span class="comment">// Arrow function (retour implicite)</span><br>
+                <span class="keyword">const</span> <span class="function">carre</span> = x => x * x;<br>
+                console.log(<span class="function">carre</span>(<span class="number">5</span>)); <span class="comment">// 25</span><br>
+                <br>
+                <span class="comment">// Arrow function avec corps</span><br>
+                <span class="keyword">const</span> <span class="function">additionner</span> = (a, b) => {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="return">a + b</span>;<br>
+                };<br>
+                console.log(<span class="function">additionner</span>(<span class="number">5</span>, <span class="number">3</span>)); <span class="comment">// 8</span>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Différences :</strong></p>
+                <ul>
+                    <li><strong>Function Declaration</strong> : hoisted, peut être appelée avant déclaration</li>
+                    <li><strong>Function Expression</strong> : non hoisted, assignée à une variable</li>
+                    <li><strong>Arrow Function</strong> : syntaxe concise, pas de <code>this</code> propre, pas d'<code>arguments</code></li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : PARAMÈTRES
+        ============================================ -->
+        <section>
+            <h2>2. Paramètres</h2>
+            
+            <h3>Paramètres par défaut</h3>
+            <div class="demo-box">
+                <span class="keyword">function</span> <span class="function">saluer</span>(nom = <span class="string">"inconnu"</span>, age = <span class="number">0</span>) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="string">`Bonjour ${nom}, ${age} ans.`</span>);<br>
+                }<br>
+                <br>
+                <span class="function">saluer</span>(); <span class="comment">// "Bonjour inconnu, 0 ans."</span><br>
+                <span class="function">saluer</span>(<span class="string">"Jean"</span>); <span class="comment">// "Bonjour Jean, 0 ans."</span><br>
+                <span class="function">saluer</span>(<span class="string">"Jean"</span>, <span class="number">25</span>); <span class="comment">// "Bonjour Jean, 25 ans."</span>
+            </div>
+            
+            <h3>Paramètres rest</h3>
+            <div class="demo-box">
+                <span class="comment">// Regroupe les arguments restants</span><br>
+                <span class="keyword">function</span> <span class="function">somme</span>(...nombres) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> nombres.reduce((acc, n) => acc + n, <span class="number">0</span>);<br>
+                }<br>
+                <br>
+                console.log(<span class="function">somme</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)); <span class="comment">// 6</span><br>
+                console.log(<span class="function">somme</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)); <span class="comment">// 15</span>
+            </div>
+            
+            <h3>Destructuration des paramètres</h3>
+            <div class="demo-box">
+                <span class="keyword">function</span> <span class="function">afficherPersonne</span>({ nom, age, ville = <span class="string">"inconnue"</span> }) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="string">`Nom: ${nom}, Âge: ${age}, Ville: ${ville}`</span>);<br>
+                }<br>
+                <br>
+                <span class="keyword">const</span> personne = { nom: <span class="string">"Jean"</span>, age: <span class="number">25</span> };<br>
+                <span class="function">afficherPersonne</span>(personne); <span class="comment">// "Nom: Jean, Âge: 25, Ville: inconnue"</span>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : PORTÉE ET CLOSURES
+        ============================================ -->
+        <section>
+            <h2>3. Portée et Closures</h2>
+            
+            <h3>Portée de fonction</h3>
+            <div class="demo-box">
+                <span class="keyword">function</span> <span class="function">testPortee</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span> local = <span class="string">"Je suis locale"</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log(local); <span class="comment">// Accessible</span><br>
+                }<br>
+                <br>
+                <span class="function">testPortee</span>();<br>
+                <span class="comment">// console.log(local); // Erreur</span>
+            </div>
+            
+            <h3>Closure (fermeture)</h3>
+            <div class="demo-box">
+                <span class="keyword">function</span> <span class="function">creerCompteur</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span> compteur = <span class="number">0</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="keyword">function</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compteur++;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> compteur;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+                }<br>
+                <br>
+                <span class="keyword">const</span> compteur1 = <span class="function">creerCompteur</span>();<br>
+                console.log(compteur1()); <span class="comment">// 1</span><br>
+                console.log(compteur1()); <span class="comment">// 2</span><br>
+                console.log(compteur1()); <span class="comment">// 3</span><br>
+                <br>
+                <span class="keyword">const</span> compteur2 = <span class="function">creerCompteur</span>();<br>
+                console.log(compteur2()); <span class="comment">// 1 (indépendant)</span>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Closure :</strong></p>
+                <ul>
+                    <li>Une fonction qui se souvient de son environnement</li>
+                    <li>Permet de créer des variables privées</li>
+                    <li>Utilisée dans les compteurs, les fabriques de fonctions</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : INTERACTIF
+        ============================================ -->
+        <section>
+            <h2>4. Testez en direct !</h2>
+            
+            <div class="btn-group">
+                <button onclick="demoDeclaration()">📝 Déclarations</button>
+                <button onclick="demoParametres()">📋 Paramètres</button>
+                <button onclick="demoClosure()">🔒 Closure</button>
+                <button onclick="demoCalcul()">🧮 Calcul</button>
+                <button onclick="clearOutput()" class="danger">🗑️ Effacer</button>
+            </div>
+            
+            <div id="output" class="output">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour voir le résultat...</span>
+            </div>
+            
+            <script src="js3.js"></script>
+        </section>
+    </main>
+    
+    <footer>
+        <p><strong>⚡ Jour 20 terminé</strong></p>
+        <p><small>&copy; 2026 — Formation 30 jours HTML / CSS / JavaScript</small></p>
+    </footer>
+</body>
+</html>
