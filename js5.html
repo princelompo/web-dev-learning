@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 23 - Le DOM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        header h1 { color: white; margin-bottom: 10px; }
+        header p { color: #a8d8ea; }
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        section h2 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        section h3 { color: #0f3460; margin: 15px 0 10px 0; }
+        .note { background: #e7f5ff; padding: 15px; border-radius: 6px; border-left: 4px solid #339af0; margin: 10px 0; }
+        .warning { background: #fff3cd; padding: 15px; border-radius: 6px; border-left: 4px solid #f39c12; margin: 10px 0; }
+        
+        .demo-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            margin: 10px 0;
+        }
+        
+        .demo-box .item {
+            background: #0f3460;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        
+        .demo-box .item:nth-child(2) { background: #e94560; }
+        .demo-box .item:nth-child(3) { background: #2ecc71; color: #1a1a2e; }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        .btn-group button {
+            padding: 10px 20px;
+            background: #0f3460;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+        .btn-group button:hover { background: #e94560; transform: translateY(-2px); }
+        .btn-group button.danger { background: #e74c3c; }
+        .btn-group button.danger:hover { background: #c0392b; }
+        
+        #demoOutput {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            min-height: 40px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .style-demo {
+            padding: 20px;
+            background: #0f3460;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            section { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ================================================
+    HEADER
+    ================================================ -->
+    <header id="main-header">
+        <h1>🌳 Jour 23 : Le DOM</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser la sélection, la manipulation 
+            et la navigation dans le DOM.
+        </p>
+        <p><small>Formation 30 jours — HTML / CSS / JavaScript</small></p>
+    </header>
+    
+    <!-- ================================================
+    MAIN
+    ================================================ -->
+    <main>
+        <!-- ============================================
+        SECTION : SÉLECTION D'ÉLÉMENTS
+        ============================================ -->
+        <section id="demo-selection">
+            <h2>1. Sélection d'éléments</h2>
+            
+            <div class="demo-box" id="selection-container">
+                <p id="demo-paragraph">Ceci est un paragraphe avec un ID.</p>
+                <p class="demo-text">Ceci est un paragraphe avec une classe.</p>
+                <p class="demo-text">Ceci est un autre paragraphe avec une classe.</p>
+                <div class="item">Élément 1</div>
+                <div class="item">Élément 2</div>
+                <div class="item">Élément 3</div>
+                <input type="text" id="demo-input" value="Valeur de l'input" placeholder="Tapez quelque chose...">
+            </div>
+            
+            <div class="btn-group">
+                <button onclick="demoGetElementById()">🔍 getElementById</button>
+                <button onclick="demoGetElementsByClassName()">🔍 getElementsByClassName</button>
+                <button onclick="demoGetElementsByTagName()">🔍 getElementsByTagName</button>
+                <button onclick="demoQuerySelector()">🔍 querySelector</button>
+                <button onclick="demoQuerySelectorAll()">🔍 querySelectorAll</button>
+                <button onclick="clearOutput()" class="danger">🗑️ Effacer</button>
+            </div>
+            
+            <div id="demoOutput">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour voir le résultat...</span>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : MANIPULATION
+        ============================================ -->
+        <section id="demo-manipulation">
+            <h2>2. Manipulation d'éléments</h2>
+            
+            <div class="demo-box" id="manipulation-container">
+                <p id="text-demo">Texte original</p>
+                <div id="html-demo"><p>Contenu HTML</p></div>
+                <div id="class-demo" class="style-demo">Cliquez pour modifier</div>
+            </div>
+            
+            <div class="btn-group">
+                <button onclick="demoTextContent()">📝 textContent</button>
+                <button onclick="demoInnerHTML()">📄 innerHTML</button>
+                <button onclick="demoStyle()">🎨 Style</button>
+                <button onclick="demoClassList()">🏷️ classList</button>
+                <button onclick="clearOutput()" class="danger">🗑️ Effacer</button>
+            </div>
+            
+            <div id="demoOutput2">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour voir le résultat...</span>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : NAVIGATION
+        ============================================ -->
+        <section id="demo-navigation">
+            <h2>3. Navigation dans le DOM</h2>
+            
+            <div class="demo-box" id="navigation-container">
+                <div class="parent">
+                    <div class="child first">Enfant 1</div>
+                    <div class="child middle">Enfant 2 (cible)</div>
+                    <div class="child last">Enfant 3</div>
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button onclick="demoParent()">👆 parent</button>
+                <button onclick="demoChildren()">👶 enfants</button>
+                <button onclick="demoSiblings()">👫 frères</button>
+                <button onclick="clearOutput()" class="danger">🗑️ Effacer</button>
+            </div>
+            
+            <div id="demoOutput3">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour voir le résultat...</span>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : ATTRIBUTS
+        ============================================ -->
+        <section id="demo-attributes">
+            <h2>4. Attributs</h2>
+            
+            <div class="demo-box" id="attributes-container">
+                <a id="demo-link" href="https://example.com" title="Exemple" data-user-id="123" data-role="admin">Lien vers exemple</a>
+                <div data-info="test" data-active="true" style="margin-top: 10px; padding: 10px; background: #e8f4fd; border-radius: 4px;">
+                    Div avec attributs data-*
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <button onclick="demoGetAttribute()">📋 getAttribute</button>
+                <button onclick="demoSetAttribute()">✏️ setAttribute</button>
+                <button onclick="demoDataset()">📊 dataset</button>
+                <button onclick="clearOutput()" class="danger">🗑️ Effacer</button>
+            </div>
+            
+            <div id="demoOutput4">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour voir le résultat...</span>
+            </div>
+        </section>
+    </main>
+    
+    <!-- ================================================
+    FOOTER
+    ================================================ -->
+    <footer>
+        <p><strong>🌳 Jour 23 terminé</strong></p>
+        <p><small>&copy; 2026 — Formation 30 jours HTML / CSS / JavaScript</small></p>
+    </footer>
+    
+    <script>
+        // ================================================
+        // FONCTIONS D'AFFICHAGE
+        // ================================================
+        
+        function display(outputId, message) {
+            const output = document.getElementById(outputId);
+            output.textContent = message;
+            console.log(message);
+        }
+        
+        function clearOutput() {
+            display('demoOutput', 'Effacé. Cliquez sur un bouton pour tester...');
+            display('demoOutput2', 'Effacé. Cliquez sur un bouton pour tester...');
+            display('demoOutput3', 'Effacé. Cliquez sur un bouton pour tester...');
+            display('demoOutput4', 'Effacé. Cliquez sur un bouton pour tester...');
+        }
+        
+        // ================================================
+        // SECTION 1 : SÉLECTION
+        // ================================================
+        
+        function demoGetElementById() {
+            const el = document.getElementById('demo-paragraph');
+            display('demoOutput', `✅ getElementById('demo-paragraph') :\n\n` +
+                `Élément trouvé : ${el.tagName}\n` +
+                `Texte : "${el.textContent}"\n` +
+                `ID : ${el.id}`);
+        }
+        
+        function demoGetElementsByClassName() {
+            const elements = document.getElementsByClassName('demo-text');
+            let result = `✅ getElementsByClassName('demo-text') :\n\n`;
+            result += `Nombre d'éléments trouvés : ${elements.length}\n\n`;
+            for (let i = 0; i < elements.length; i++) {
+                result += `  ${i+1}. "${elements[i].textContent}"\n`;
+            }
+            display('demoOutput', result);
+        }
+        
+        function demoGetElementsByTagName() {
+            const elements = document.getElementsByTagName('p');
+            let result = `✅ getElementsByTagName('p') :\n\n`;
+            result += `Nombre de paragraphes trouvés : ${elements.length}\n\n`;
+            for (let i = 0; i < elements.length; i++) {
+                result += `  ${i+1}. "${elements[i].textContent}"\n`;
+            }
+            display('demoOutput', result);
+        }
+        
+        function demoQuerySelector() {
+            const el = document.querySelector('.demo-text');
+            display('demoOutput', `✅ querySelector('.demo-text') :\n\n` +
+                `Élément trouvé : ${el.tagName}\n` +
+                `Texte : "${el.textContent}"\n` +
+                `Classe : ${el.className}\n\n` +
+                `⚠️ querySelector retourne SEULEMENT le premier élément.`);
+        }
+        
+        function demoQuerySelectorAll() {
+            const elements = document.querySelectorAll('.demo-text');
+            let result = `✅ querySelectorAll('.demo-text') :\n\n`;
+            result += `Nombre d'éléments trouvés : ${elements.length}\n\n`;
+            elements.forEach((el, index) => {
+                result += `  ${index+1}. "${el.textContent}"\n`;
+            });
+            result += `\n💡 querySelectorAll retourne une NodeList (forEach disponible)`;
+            display('demoOutput', result);
+        }
+        
+        // ================================================
+        // SECTION 2 : MANIPULATION
+        // ================================================
+        
+        function demoTextContent() {
+            const el = document.getElementById('text-demo');
+            const oldText = el.textContent;
+            el.textContent = 'Texte modifié par JavaScript !';
+            display('demoOutput2', `✅ textContent :\n\n` +
+                `Ancien texte : "${oldText}"\n` +
+                `Nouveau texte : "${el.textContent}"\n\n` +
+                `💡 textContent modifie le texte (ignorant le HTML).`);
+        }
+        
+        function demoInnerHTML() {
+            const el = document.getElementById('html-demo');
+            const oldHTML = el.innerHTML;
+            el.innerHTML = '<span style="color: #e94560; font-weight: bold;">HTML modifié</span> avec <em>JavaScript</em> !';
+            display('demoOutput2', `✅ innerHTML :\n\n` +
+                `Ancien HTML : "${oldHTML}"\n` +
+                `Nouveau HTML : "${el.innerHTML}"\n\n` +
+                `⚠️ ATTENTION : innerHTML peut présenter des risques de sécurité (XSS).`);
+        }
+        
+        function demoStyle() {
+            const el = document.getElementById('class-demo');
+            el.style.backgroundColor = '#e94560';
+            el.style.color = 'white';
+            el.style.padding = '20px';
+            el.style.borderRadius = '12px';
+            el.style.transform = 'scale(1.05)';
+            el.style.transition = 'all 0.3s';
+            el.textContent = '✅ Style modifié !';
+            
+            const computed = getComputedStyle(el);
+            display('demoOutput2', `✅ Modifications de style :\n\n` +
+                `backgroundColor : ${el.style.backgroundColor}\n` +
+                `color : ${el.style.color}\n` +
+                `padding : ${el.style.padding}\n` +
+                `borderRadius : ${el.style.borderRadius}\n` +
+                `transform : ${el.style.transform}\n\n` +
+                `💡 Les styles sont appliqués en inline.`);
+        }
+        
+        function demoClassList() {
+            const el = document.getElementById('class-demo');
+            
+            // Ajouter des classes
+            el.classList.add('modified', 'active', 'highlight');
+            
+            // Vérifier
+            const hasModified = el.classList.contains('modified');
+            const classes = el.className;
+            
+            display('demoOutput2', `✅ classList :\n\n` +
+                `Classes actuelles : "${classes}"\n` +
+                `Contient 'modified' : ${hasModified}\n` +
+                `Nombre de classes : ${el.classList.length}\n\n` +
+                `Méthodes disponibles :\n` +
+                `  • add('class') - ajouter\n` +
+                `  • remove('class') - supprimer\n` +
+                `  • toggle('class') - basculer\n` +
+                `  • contains('class') - vérifier\n` +
+                `  • replace('old', 'new') - remplacer`);
+        }
+        
+        // ================================================
+        // SECTION 3 : NAVIGATION
+        // ================================================
+        
+        function demoParent() {
+            const target = document.querySelector('.child.middle');
+            const parent = target.parentElement;
+            const grandparent = parent.parentElement;
+            
+            display('demoOutput3', `✅ Navigation vers les parents :\n\n` +
+                `Élément cible : "${target.textContent}"\n` +
+                `Parent : ${parent.tagName} (class: ${parent.className})\n` +
+                `Grand-parent : ${grandparent.tagName} (id: ${grandparent.id})\n\n` +
+                `💡 parentElement vs parentNode :\n` +
+                `  • parentElement : seulement les éléments\n` +
+                `  • parentNode : tous les nœuds (incluant text, comment)`);
+        }
+        
+        function demoChildren() {
+            const parent = document.querySelector('.parent');
+            const children = parent.children;
+            const first = parent.firstElementChild;
+            const last = parent.lastElementChild;
+            
+            let result = `✅ Navigation vers les enfants :\n\n`;
+            result += `Parent : ${parent.tagName}\n`;
+            result += `Nombre d'enfants : ${children.length}\n\n`;
+            result += `Enfants :\n`;
+            for (let i = 0; i < children.length; i++) {
+                result += `  ${i+1}. "${children[i].textContent}"\n`;
+            }
+            result += `\nPremier enfant : "${first.textContent}"\n`;
+            result += `Dernier enfant : "${last.textContent}"\n\n`;
+            result += `💡 firstElementChild vs firstChild :\n` +
+                `  • firstElementChild : seulement les éléments\n` +
+                `  • firstChild : tous les nœuds`;
+            
+            display('demoOutput3', result);
+        }
+        
+        function demoSiblings() {
+            const target = document.querySelector('.child.middle');
+            const next = target.nextElementSibling;
+            const prev = target.previousElementSibling;
+            const all = target.parentElement.children;
+            
+            let result = `✅ Navigation vers les frères :\n\n`;
+            result += `Élément cible : "${target.textContent}"\n`;
+            result += `Frère précédent : "${prev ? prev.textContent : 'Aucun'}"\n`;
+            result += `Frère suivant : "${next ? next.textContent : 'Aucun'}"\n\n`;
+            result += `Tous les frères :\n`;
+            for (let i = 0; i < all.length; i++) {
+                const isTarget = all[i] === target;
+                result += `  ${i+1}. "${all[i].textContent}"${isTarget ? ' ← cible' : ''}\n`;
+            }
+            result += `\n💡 nextElementSibling vs nextSibling :\n` +
+                `  • nextElementSibling : seulement les éléments\n` +
+                `  • nextSibling : tous les nœuds`;
+            
+            display('demoOutput3', result);
+        }
+        
+        // ================================================
+        // SECTION 4 : ATTRIBUTS
+        // ================================================
+        
+        function demoGetAttribute() {
+            const link = document.getElementById('demo-link');
+            
+            display('demoOutput4', `✅ getAttribute() :\n\n` +
+                `href : "${link.getAttribute('href')}"\n` +
+                `title : "${link.getAttribute('title')}"\n` +
+                `data-user-id : "${link.getAttribute('data-user-id')}"\n\n` +
+                `Attributs existants :\n` +
+                `  • href\n` +
+                `  • title\n` +
+                `  • data-user-id\n` +
+                `  • data-role\n\n` +
+                `💡 hasAttribute() : vérifie l'existence d'un attribut.`);
+        }
+        
+        function demoSetAttribute() {
+            const link = document.getElementById('demo-link');
+            
+            const oldHref = link.getAttribute('href');
+            const oldTitle = link.getAttribute('title');
+            
+            link.setAttribute('href', 'https://developer.mozilla.org/fr/');
+            link.setAttribute('title', 'Documentation MDN');
+            link.setAttribute('target', '_blank');
+            link.textContent = '🔗 Lien modifié vers MDN';
+            
+            display('demoOutput4', `✅ setAttribute() :\n\n` +
+                `Ancien href : "${oldHref}"\n` +
+                `Nouveau href : "${link.getAttribute('href')}"\n` +
+                `Ancien title : "${oldTitle}"\n` +
+                `Nouveau title : "${link.getAttribute('title')}"\n` +
+                `Nouvel attribut target : "${link.getAttribute('target')}"\n\n` +
+                `💡 setAttribute() crée l'attribut s'il n'existe pas.`);
+        }
+        
+        function demoDataset() {
+            const link = document.getElementById('demo-link');
+            
+            const userId = link.dataset.userId;
+            const role = link.dataset.role;
+            
+            // Modifier
+            link.dataset.userId = '456';
+            link.dataset.active = 'true';
+            
+            const div = document.querySelector('#attributes-container div');
+            const info = div.dataset.info;
+            const active = div.dataset.active;
+            
+            display('demoOutput4', `✅ dataset (attributs data-*) :\n\n` +
+                `Pour le lien :\n` +
+                `  data-user-id : "${userId}" → modifié en "456"\n` +
+                `  data-role : "${role}"\n` +
+                `  data-active : "${link.dataset.active}" (nouveau)\n\n` +
+                `Pour la div :\n` +
+                `  data-info : "${info}"\n` +
+                `  data-active : "${active}"\n\n` +
+                `💡 Conversion camelCase :\n` +
+                `  data-user-id → dataset.userId\n` +
+                `  data-role → dataset.role\n` +
+                `  data-active → dataset.active`);
+        }
+    </script>
+</body>
+</html>
