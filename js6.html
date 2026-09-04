@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 24 - Événements</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        header h1 { color: white; margin-bottom: 10px; }
+        header p { color: #a8d8ea; }
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        section h2 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        section h3 { color: #0f3460; margin: 15px 0 10px 0; }
+        .note { background: #e7f5ff; padding: 15px; border-radius: 6px; border-left: 4px solid #339af0; margin: 10px 0; }
+        .warning { background: #fff3cd; padding: 15px; border-radius: 6px; border-left: 4px solid #f39c12; margin: 10px 0; }
+        
+        .demo-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            margin: 10px 0;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            background: #0f3460;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #e94560; transform: translateY(-2px); }
+        .btn.danger { background: #e74c3c; }
+        .btn.danger:hover { background: #c0392b; }
+        .btn.success { background: #2ecc71; color: #1a1a2e; }
+        .btn.success:hover { background: #27ae60; }
+        
+        .output {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            min-height: 40px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .event-demo {
+            padding: 20px;
+            background: #0f3460;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px 0;
+        }
+        .event-demo:hover { background: #1a4f7a; }
+        .event-demo.active { background: #e94560; transform: scale(1.05); }
+        
+        .coords-demo {
+            width: 100%;
+            height: 200px;
+            background: #e8f4fd;
+            border: 2px dashed #0f3460;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #0f3460;
+            margin: 10px 0;
+            cursor: crosshair;
+        }
+        
+        .delegation-demo li {
+            padding: 10px 15px;
+            border: 1px solid #dee2e6;
+            border-top: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .delegation-demo li:first-child { border-top: 1px solid #dee2e6; border-radius: 6px 6px 0 0; }
+        .delegation-demo li:last-child { border-radius: 0 0 6px 6px; }
+        .delegation-demo li:hover { background: #e8f4fd; }
+        .delegation-demo li.active { background: #e94560; color: white; }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            section { padding: 15px; }
+            .btn { padding: 8px 15px; font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚡ Jour 24 : Événements</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser les événements JavaScript 
+            pour créer des pages interactives.
+        </p>
+        <p><small>Formation 30 jours — HTML / CSS / JavaScript</small></p>
+    </header>
+    
+    <main>
+        <!-- ============================================
+        SECTION : ÉVÉNEMENTS DE BASE
+        ============================================ -->
+        <section>
+            <h2>1. Événements de base</h2>
+            
+            <div class="demo-box">
+                <h3>Événements de souris</h3>
+                <div id="mouseDemo" class="event-demo">
+                    🖱️ Interagissez avec moi
+                </div>
+                <div id="mouseOutput" class="output">En attente d'interaction...</div>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Événements de clavier</h3>
+                <input type="text" id="keyDemo" placeholder="Tapez quelque chose..." style="width: 100%; padding: 10px; border-radius: 6px; border: 2px solid #bdc3c7; font-size: 1em;">
+                <div id="keyOutput" class="output">En attente de saisie...</div>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Coordonnées de la souris</h3>
+                <div id="coordsDemo" class="coords-demo">
+                    🖱️ Déplacez la souris ici
+                </div>
+                <div id="coordsOutput" class="output">En attente de mouvement...</div>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : DÉLÉGATION D'ÉVÉNEMENTS
+        ============================================ -->
+        <section>
+            <h2>2. Délégation d'événements</h2>
+            
+            <div class="demo-box">
+                <p><strong>Cliquez sur un élément de la liste :</strong></p>
+                <ul id="delegationList" class="delegation-demo">
+                    <li>Élément 1</li>
+                    <li>Élément 2</li>
+                    <li>Élément 3</li>
+                    <li>Élément 4</li>
+                    <li>Élément 5</li>
+                </ul>
+                <div id="delegationOutput" class="output">En attente de clic...</div>
+                
+                <div style="margin-top: 10px;">
+                    <button id="addItemBtn" class="btn success">➕ Ajouter un élément</button>
+                </div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Délégation d'événements :</strong></p>
+                <ul>
+                    <li>Un seul écouteur sur le parent</li>
+                    <li>Gère les éléments ajoutés dynamiquement</li>
+                    <li>Meilleure performance</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : PREVENT DEFAULT / STOP PROPAGATION
+        ============================================ -->
+        <section>
+            <h2>3. preventDefault et stopPropagation</h2>
+            
+            <div class="demo-box">
+                <h3>preventDefault()</h3>
+                <a id="preventLink" href="https://example.com" target="_blank">🔗 Lien vers exemple.com</a>
+                <div id="preventOutput" class="output">En attente de clic...</div>
+            </div>
+            
+            <div class="demo-box">
+                <h3>stopPropagation()</h3>
+                <div id="parentDiv" style="padding: 20px; background: #e8f4fd; border-radius: 8px; cursor: pointer;">
+                    <strong>Parent (div)</strong>
+                    <button id="childBtn" class="btn" style="margin-top: 10px;">Bouton enfant</button>
+                </div>
+                <div id="propagationOutput" class="output">En attente d'interaction...</div>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : ÉVÉNEMENTS PERSONNALISÉS
+        ============================================ -->
+        <section>
+            <h2>4. Événements personnalisés</h2>
+            
+            <div class="demo-box">
+                <button id="customEventBtn" class="btn">🎯 Déclencher un événement personnalisé</button>
+                <div id="customEventOutput" class="output">En attente d'événement...</div>
+            </div>
+        </section>
+
+        <script src="js6.js"></script>
+    </main>
+    
+    <footer>
+        <p><strong>⚡ Jour 24 terminé</strong></p>
+        <p><small>&copy; 2026 — Formation 30 jours HTML / CSS / JavaScript</small></p>
