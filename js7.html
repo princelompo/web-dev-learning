@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 25 - Manipulation avancée du DOM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        header h1 { color: white; margin-bottom: 10px; }
+        header p { color: #a8d8ea; }
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        section h2 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        section h3 { color: #0f3460; margin: 15px 0 10px 0; }
+        .note { background: #e7f5ff; padding: 15px; border-radius: 6px; border-left: 4px solid #339af0; margin: 10px 0; }
+        .warning { background: #fff3cd; padding: 15px; border-radius: 6px; border-left: 4px solid #f39c12; margin: 10px 0; }
+        
+        .btn {
+            padding: 10px 20px;
+            background: #0f3460;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #e94560; transform: translateY(-2px); }
+        .btn.danger { background: #e74c3c; }
+        .btn.danger:hover { background: #c0392b; }
+        .btn.success { background: #2ecc71; color: #1a1a2e; }
+        .btn.success:hover { background: #27ae60; }
+        .btn.warning { background: #f39c12; color: #1a1a2e; }
+        .btn.warning:hover { background: #e67e22; }
+        
+        .demo-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            margin: 10px 0;
+            min-height: 50px;
+        }
+        
+        .output {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            min-height: 40px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .card {
+            background: white;
+            border: 2px solid #0f3460;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .card h3 { color: #0f3460; }
+        .card p { color: #6c757d; }
+        
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 10px 0;
+        }
+        .grid-demo .item {
+            background: #0f3460;
+            color: white;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .grid-demo .item:nth-child(2) { background: #e94560; }
+        .grid-demo .item:nth-child(3) { background: #2ecc71; color: #1a1a2e; }
+        .grid-demo .item:nth-child(4) { background: #f39c12; color: #1a1a2e; }
+        .grid-demo .item:nth-child(5) { background: #9b59b6; }
+        .grid-demo .item:nth-child(6) { background: #3498db; }
+        .grid-demo .item:hover { transform: scale(1.05); }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 1em;
+            min-width: 150px;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #0f3460;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            section { padding: 15px; }
+            .input-group input { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛠️ Jour 25 : Manipulation avancée du DOM</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser la création, l'insertion, 
+            la suppression et la manipulation avancée des éléments DOM.
+        </p>
+        <p><small>Formation 30 jours — HTML / CSS / JavaScript</small></p>
+    </header>
+    
+    <main>
+        <!-- ============================================
+        SECTION : CRÉATION ET INSERTION
+        ============================================ -->
+        <section>
+            <h2>1. Création et insertion d'éléments</h2>
+            
+            <div class="demo-box">
+                <div id="creationContainer">
+                    <p>Contenu initial</p>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="itemText" placeholder="Texte de l'élément..." value="Nouvel élément">
+                    <button class="btn" onclick="createElement()">➕ Créer</button>
+                    <button class="btn success" onclick="createMultiple()">📦 Créer 5</button>
+                    <button class="btn warning" onclick="createWithHTML()">📄 HTML</button>
+                </div>
+                
+                <div id="createOutput" class="output">En attente d'action...</div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Méthodes d'insertion :</strong></p>
+                <ul>
+                    <li><code>appendChild()</code> : ajouter à la fin</li>
+                    <li><code>insertBefore()</code> : insérer avant un élément</li>
+                    <li><code>append()</code> / <code>prepend()</code> : ajouter au début/fin</li>
+                    <li><code>after()</code> / <code>before()</code> : insérer autour</li>
+                    <li><code>insertAdjacentHTML()</code> : insérer du HTML</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : SUPPRESSION
+        ============================================ -->
+        <section>
+            <h2>2. Suppression d'éléments</h2>
+            
+            <div class="demo-box">
+                <div id="deleteContainer" class="grid-demo">
+                    <div class="item">Élément 1</div>
+                    <div class="item">Élément 2</div>
+                    <div class="item">Élément 3</div>
+                    <div class="item">Élément 4</div>
+                    <div class="item">Élément 5</div>
+                    <div class="item">Élément 6</div>
+                </div>
+                
+                <div class="input-group">
+                    <button class="btn danger" onclick="deleteLast()">🗑️ Supprimer dernier</button>
+                    <button class="btn danger" onclick="deleteFirst()">🗑️ Supprimer premier</button>
+                    <button class="btn danger" onclick="deleteAll()">🧹 Tout supprimer</button>
+                    <button class="btn success" onclick="resetItems()">🔄 Réinitialiser</button>
+                </div>
+                
+                <div id="deleteOutput" class="output">En attente d'action...</div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 Méthodes de suppression :</strong></p>
+                <ul>
+                    <li><code>removeChild()</code> : supprimer un enfant</li>
+                    <li><code>remove()</code> : supprimer l'élément directement</li>
+                    <li><code>replaceChildren()</code> : vider un élément</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : CLASSES ET STYLES
+        ============================================ -->
+        <section>
+            <h2>3. Manipulation des classes et styles</h2>
+            
+            <div class="demo-box">
+                <div id="styleDemo" class="card">
+                    <h3>Élément de démonstration</h3>
+                    <p>Ce bloc peut être modifié dynamiquement.</p>
+                </div>
+                
+                <div class="input-group">
+                    <button class="btn" onclick="addClass()">🏷️ Ajouter classe</button>
+                    <button class="btn" onclick="removeClass()">🏷️ Supprimer classe</button>
+                    <button class="btn warning" onclick="toggleClass()">🔄 Basculer classe</button>
+                    <button class="btn success" onclick="changeStyle()">🎨 Style</button>
+                    <button class="btn danger" onclick="resetStyle()">↩️ Réinitialiser</button>
+                </div>
+                
+                <div id="styleOutput" class="output">En attente d'action...</div>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : FRAGMENT DE DOCUMENT
+        ============================================ -->
+        <section>
+            <h2>4. Fragment de document (performance)</h2>
+            
+            <div class="demo-box">
+                <div id="fragmentContainer" class="grid-demo"></div>
+                
+                <div class="input-group">
+                    <button class="btn" onclick="createWithFragment()">🚀 Avec fragment (100 éléments)</button>
+                    <button class="btn danger" onclick="createWithoutFragment()">🐌 Sans fragment (100 éléments)</button>
+                    <button class="btn warning" onclick="clearFragment()">🧹 Effacer</button>
+                </div>
+                
+                <div id="fragmentOutput" class="output">En attente d'action...</div>
+            </div>
+            
+            <div class="note">
+                <p><strong>💡 DocumentFragment :</strong></p>
+                <ul>
+                    <li>Conteneur temporaire en mémoire</li>
+                    <li>Ajout en une seule fois → <strong>meilleure performance</strong></li>
+                    <li>Évite les reflows multiples</li>
+                    <li>Recommandé pour de nombreux éléments</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p><strong>🛠️ Jour 25 terminé</strong></p>
+        <p><small>&copy; 2026 — Formation 30 jours HTML / CSS / JavaScript</small></p>
+    </footer>
+    
+    <script src="js7.js"></script>
+</body>
+</html>
