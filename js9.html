@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 27 - Requêtes asynchrones (Fetch)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        header h1 { color: white; margin-bottom: 10px; }
+        header p { color: #a8d8ea; }
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        section h2 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        section h3 { color: #0f3460; margin: 15px 0 10px 0; }
+        
+        .note { background: #e7f5ff; padding: 15px; border-radius: 6px; border-left: 4px solid #339af0; margin: 10px 0; }
+        .warning { background: #fff3cd; padding: 15px; border-radius: 6px; border-left: 4px solid #f39c12; margin: 10px 0; }
+        .error { background: #ffebee; padding: 15px; border-radius: 6px; border-left: 4px solid #e74c3c; margin: 10px 0; }
+        .success { background: #e8f5e9; padding: 15px; border-radius: 6px; border-left: 4px solid #2ecc71; margin: 10px 0; }
+        
+        .btn {
+            padding: 10px 20px;
+            background: #0f3460;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #e94560; transform: translateY(-2px); }
+        .btn.danger { background: #e74c3c; }
+        .btn.danger:hover { background: #c0392b; }
+        .btn.success { background: #2ecc71; color: #1a1a2e; }
+        .btn.success:hover { background: #27ae60; }
+        .btn.warning { background: #f39c12; color: #1a1a2e; }
+        .btn.warning:hover { background: #e67e22; }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        
+        .output {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            min-height: 60px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .api-result {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+            margin: 10px 0;
+            min-height: 40px;
+        }
+        
+        .user-card {
+            background: white;
+            border: 2px solid #0f3460;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .user-card h3 { color: #0f3460; margin: 0 0 5px 0; }
+        .user-card p { color: #6c757d; margin: 0; }
+        
+        .loading {
+            color: #f39c12;
+            font-weight: 600;
+        }
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4) infinite;
+        }
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            section { padding: 15px; }
+            .btn-group .btn { flex: 1; min-width: 100px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌐 Jour 27 : Requêtes asynchrones (Fetch)</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser les requêtes asynchrones 
+            avec Fetch, les promesses et async/await.
+        </p>
+        <p><small>Formation 30 jours — HTML / CSS / JavaScript</small></p>
+    </header>
+    
+    <main>
+        <!-- ============================================
+        SECTION : API DÉMONSTRATION
+        ============================================ -->
+        <section>
+            <h2>1. Requêtes API</h2>
+            
+            <div class="note">
+                <p><strong>💡 API utilisée :</strong> JSONPlaceholder (https://jsonplaceholder.typicode.com)</p>
+                <p>Une API de test gratuite pour les démonstrations.</p>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn success" onclick="getUsers()">👤 GET /users</button>
+                <button class="btn" onclick="getPosts()">📝 GET /posts</button>
+                <button class="btn warning" onclick="getPostById()">📄 GET /posts/1</button>
+                <button class="btn" onclick="createPost()">➕ POST /posts</button>
+                <button class="btn danger" onclick="clearResult()">🗑️ Effacer</button>
+            </div>
+            
+            <div id="apiResult" class="output">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour faire une requête API...</span>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : AJOUT MANUEL
+        ============================================ -->
+        <section>
+            <h2>2. Ajouter un utilisateur</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 10px 0;">
+                <input type="text" id="userName" placeholder="Nom" style="padding: 10px; border: 2px solid #bdc3c7; border-radius: 6px;">
+                <input type="email" id="userEmail" placeholder="Email" style="padding: 10px; border: 2px solid #bdc3c7; border-radius: 6px;">
+            </div>
+            
+            <button class="btn success" onclick="addUser()">➕ Ajouter utilisateur</button>
+            
+            <div id="addResult" class="output">
+                <span style="opacity: 0.5;">Attente de saisie...</span>
+            </div>
+        </section>
+        
+        <!-- ============================================
+        SECTION : GESTION D'ERREURS
+        ============================================ -->
+        <section>
+            <h2>3. Gestion d'erreurs</h2>
+            
+            <div class="btn-group">
+                <button class="btn danger" onclick="testError404()">🚫 404 Not Found</button>
+                <button class="btn danger" onclick="testError500()">💥 500 Server Error</button>
+                <button class="btn warning" onclick="testTimeout()">⏱️ Timeout (5s)</button>
+                <button class="btn" onclick="testRetry()">🔄 Retry (avec backoff)</button>
+            </div>
+            
+            <div id="errorResult" class="output">
+                <span style="opacity: 0.5;">Cliquez sur un bouton pour tester la gestion d'erreurs...</span>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p><strong>🌐 Jour 27 terminé</strong></p>
+        <p><small>&copy; 2026 — Formation 30 jours HTML / CSS / JavaScript</small></p>
+    </footer>
+    
+    <script src="js9.js"></script>
+</body>
+</html>
