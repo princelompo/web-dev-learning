@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jour 26 - Formulaires en JavaScript</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        header h1 { color: white; margin-bottom: 10px; }
+        header p { color: #a8d8ea; }
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        section h2 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        section h3 { color: #0f3460; margin: 15px 0 10px 0; }
+        
+        .note { background: #e7f5ff; padding: 15px; border-radius: 6px; border-left: 4px solid #339af0; margin: 10px 0; }
+        .warning { background: #fff3cd; padding: 15px; border-radius: 6px; border-left: 4px solid #f39c12; margin: 10px 0; }
+        .error { background: #ffebee; padding: 15px; border-radius: 6px; border-left: 4px solid #e74c3c; margin: 10px 0; }
+        .success { background: #e8f5e9; padding: 15px; border-radius: 6px; border-left: 4px solid #2ecc71; margin: 10px 0; }
+        
+        .btn {
+            padding: 10px 20px;
+            background: #0f3460;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #e94560; transform: translateY(-2px); }
+        .btn.danger { background: #e74c3c; }
+        .btn.danger:hover { background: #c0392b; }
+        .btn.success { background: #2ecc71; color: #1a1a2e; }
+        .btn.success:hover { background: #27ae60; }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .form-group .required {
+            color: #e74c3c;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0f3460;
+            box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
+        }
+        .form-group input.valid { border-color: #2ecc71; }
+        .form-group input.invalid { border-color: #e74c3c; }
+        .form-group .error-message {
+            color: #e74c3c;
+            font-size: 0.85em;
+            display: none;
+            margin-top: 5px;
+        }
+        .form-group .help-text {
+            color: #6c757d;
+            font-size: 0.85em;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        .strength-container {
+            margin-top: 8px;
+        }
+        .strength-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #bdc3c7;
+            transition: all 0.3s;
+            width: 0%;
+        }
+        .strength-text {
+            font-size: 0.85em;
+            margin-top: 3px;
+        }
+        
+        .output {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            min-height: 40px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            section { padding: 15px; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-actions { flex-direction: column; }
+            .form-actions .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📝 Jour 26 : Formulaires en JavaScript</h1>
+        <p>
+            <strong>Objectif :</strong> Maîtriser la validation, la gestion 
+            et l'interaction avec les formulaires en JavaScript.
+        </p>
+        <p><small>Formation 30 jours — HTML / CSS / JavaScript</small></p>
+    </header>
+    
+    <main>
+        <!-- ============================================
+        SECTION : FORMULAIRE COMPLET
+        ============================================ -->
+        <section>
+            <h2>1. Formulaire avec validation avancée</h2>
+            
+            <form id="demoForm" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formNom">Nom <span class="required">*</span></label>
+                        <input type="text" id="formNom" name="nom" 
+                               required minlength="2" maxlength="50"
+                               placeholder="Votre nom">
+                        <div class="error-message" id="error-nom"></div>
+                        <span class="help-text">Entre 2 et 50 caractères</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="formEmail">Email <span class="required">*</span></label>
+                        <input type="email" id="formEmail" name="email" 
+                               required placeholder="email@domaine.com">
+                        <div class="error-message" id="error-email"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formPassword">Mot de passe <span class="required">*</span></label>
+                        <input type="password" id="formPassword" name="password" 
+                               required minlength="8"
+                               placeholder="Minimum 8 caractères">
+                        <div class="error-message" id="error-password"></div>
+                        <div class="strength-container">
+                            <div class="strength-bar" id="strengthBar"></div>
+                            <div class="strength-text" id="strengthText">Saisissez un mot de passe</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="formAge">Âge <span class="required">*</span></label>
+                        <input type="number" id="formAge" name="age" 
+                               required min="18" max="99" step="1"
+                               placeholder="18-99 ans">
+                        <div class="error-message" id="error-age"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="formPays">Pays</label>
+                    <select id="formPays" name="pays">
+                        <option value="">-- Choisissez --</option>
+                        <option value="fr">France</option>
+                        <option value="be">Belgique</option>
+                        <option value="ch">Suisse</option>
+                        <option value="ca">Canada</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Centres d'intérêt</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interets" value="sport">
+                            Sport
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interets" value="musique">
+                            Musique
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interets" value="lecture">
+                            Lecture
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interets" value="voyage">
+                            Voyage
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="formMessage">Message</label>
+                    <textarea id="formMessage" name="message" 
+                              rows="4" maxlength="500"
+                              placeholder="Votre message..."></textarea>
+                    <div id="charCount" style="font-size: 0.85em; color: #6c757d; margin-top: 5px;">
+                        500 caractères restants
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn success">📨 Envoyer</button>
+                    <button type="reset" class="btn danger">🗑️ Réinitialiser</button>
+                    <button type="button" class="btn" onclick="showFormData()">📊 Voir les données</button>
+                </div>
+            </form>
+            
+            <div id="formOutput" class="output">En attente de soumission...</div>
+        </section>
+    </main>
+    
+    <footer>
+        <p><strong>📝 Jour 26 terminé</strong></p>
+        <p><small>&copy; 2026 — Formation 30 jours HTML / CSS / JavaScript</small></p>
+    </footer>
+    
+    <script src = "js8.js"></script>
+</body>
+</html>
