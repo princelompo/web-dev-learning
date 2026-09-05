@@ -1,0 +1,30 @@
+mon-projet/
+├── index.html
+├── style.css
+├── script.js
+├── package.json
+├── .gitignore
+├── src/
+│   ├── index.js
+│   ├── modules/
+│   │   ├── utils.js
+│   │   ├── api.js
+│   │   └── dom.js
+│   ├── components/
+│   │   ├── Header.js
+│   │   ├── Footer.js
+│   │   └── Card.js
+│   ├── services/
+│   │   ├── userService.js
+│   │   └── productService.js
+│   └── styles/
+│       ├── main.css
+│       └── components/
+│           ├── header.css
+│           └── card.css
+├── public/
+│   ├── images/
+│   ├── fonts/
+│   └── favicon.ico
+├── dist/ (généré)
+└── node_modules/
