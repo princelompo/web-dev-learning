@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Application de gestion de tâches - To-Do List">
+    <meta name="theme-color" content="#0f3460">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ma To-Do List">
+    <meta property="og:description" content="Gérez vos tâches efficacement">
+    <meta property="og:type" content="website">
+    
+    <!-- Polices Google -->
+    <link rel="stylesheet" href="js10.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <title>Ma To-Do List</title>
+</head>
+<body>
+    <!-- ==========================================
+    HEADER
+    ========================================== -->
+    <header>
+        <div class="container">
+            <h1>📋 Ma <span>To-Do</span> List</h1>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
+                    🌙 Mode sombre
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- ==========================================
+    MAIN
+    ========================================== -->
+    <main class="container">
+        <!-- Statistiques -->
+        <div class="stats" id="statsContainer">
+            <div class="stat-card">
+                <span class="number" id="totalCount">0</span>
+                <span class="label">Total</span>
+            </div>
+            <div class="stat-card">
+                <span class="number" id="completedCount">0</span>
+                <span class="label">Terminées</span>
+            </div>
+            <div class="stat-card">
+                <span class="number" id="pendingCount">0</span>
+                <span class="label">En cours</span>
+            </div>
+            <div class="stat-card">
+                <span class="number" id="categoryCount">0</span>
+                <span class="label">Catégories</span>
+            </div>
+        </div>
+        
+        <!-- Ajout de tâche -->
+        <div class="add-task" id="addTaskForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="taskTitle">Titre <span style="color: var(--danger);">*</span></label>
+                    <input type="text" id="taskTitle" placeholder="Ex: Faire les courses" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskCategory">Catégorie</label>
+                    <select id="taskCategory">
+                        <option value="personnel">👤 Personnel</option>
+                        <option value="travail">💼 Travail</option>
+                        <option value="urgent">🔴 Urgent</option>
+                        <option value="maison">🏠 Maison</option>
+                        <option value="loisirs">🎮 Loisirs</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="taskPriority">Priorité</label>
+                    <select id="taskPriority">
+                        <option value="basse">🟢 Basse</option>
+                        <option value="moyenne" selected>🟡 Moyenne</option>
+                        <option value="haute">🔴 Haute</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="taskDueDate">Échéance</label>
+                    <input type="date" id="taskDueDate">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="taskDescription">Description</label>
+                <textarea id="taskDescription" placeholder="Ajoutez une description..."></textarea>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" id="saveTaskBtn">➕ Ajouter</button>
+                <button class="btn btn-secondary" id="cancelEditBtn" style="display: none;">Annuler</button>
+            </div>
+        </div>
+        
+        <!-- Filtres -->
+        <div class="filters">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">📋 Toutes</button>
+                <button class="filter-btn" data-filter="active">⏳ En cours</button>
+                <button class="filter-btn" data-filter="completed">✅ Terminées</button>
+            </div>
+            <div class="filter-group" id="categoryFilters">
+                <button class="filter-btn" data-filter="categorie-personnel">👤 Personnel</button>
+                <button class="filter-btn" data-filter="categorie-travail">💼 Travail</button>
+                <button class="filter-btn" data-filter="categorie-urgent">🔴 Urgent</button>
+                <button class="filter-btn" data-filter="categorie-maison">🏠 Maison</button>
+                <button class="filter-btn" data-filter="categorie-loisirs">🎮 Loisirs</button>
+            </div>
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Rechercher...">
+        </div>
+        
+        <!-- Liste des tâches -->
+        <div id="taskList" class="task-list">
+            <!-- Les tâches sont générées dynamiquement par JavaScript -->
+        </div>
+    </main>
+    
+    <script src="js10.js"></script>
+</body>
+</html>
